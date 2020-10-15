@@ -18,7 +18,7 @@
                 >
                     <!--METER LA TABLA DEL LISTADO AQUI-->
                     <div  class="datatable">
-                        <table id="prueba" class="table" style="width:100%">
+                        <table id="dtMaterialDesignExample" class="table" cellspacing="0" width="100%">
                             <thead>
                             <tr>
                                 <th class="th-sm">Name</th>
@@ -75,36 +75,42 @@
                 aria-labelledby="ex3-tab-2"
                 >
                     <!--METER EL FORM DEL REGISTRO AQUI-->
-                    <section class="border p-4 mb-4 d-flex justify-content-center">
-                        <form class="row g-3">
-                            <div class="col-md-6">
-                                <div class="form-outline">
-                                    <input type="text" id="form1" class="form-control" />
-                                    <label class="form-label" for="form1">Nombre completo</label>
-                                    </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-outline">
-                                    <textarea class="form-control" id="obs" rows="3"></textarea>
-                                    <label class="form-label" for="obs">Observacion</label>
+                    <section class="border p-4  d-flex justify-content-center">
+                        <!-- Material form row -->
+                        <form>
+                            <!-- Grid row -->
+                            <div class="form-row">
+                            <!-- Grid column -->
+                            <div class="col-lg-12">
+                                <!-- Material input -->
+                                <div class="md-form mt-0">
+                                <input id="nom" type="text" class="form-control" placeholder="Nombre completo">
+                                <label for="nom">Nombre</label>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-outline">
-                                    <select id="Ubicacion" class="select" data-filter="true">
-                                        <option value="1">Cuarto Frio</option>
-                                        <option value="2">San Lorenzo</option>
-                                        <option value="3">Suragroh</option>
-                                        <option value="4">Santa Rosa</option>
-                                        <option value="5">Ojo de Agua</option>
-                                    </select>
-                                <label for="validationDefault05" class="form-label">Ubicacion</label>
-                                </div>
+                            <!-- Grid column -->                        
+                            <!-- Grid column -->
+                            <div class="md-form col-lg-12">
+                                <textarea id="form7" class="md-textarea form-control" rows="3"></textarea>
+                                <label for="form7">Observacion</label>
+                            </div>
+                            <!-- Grid column -->
+                            </div>
+                                <select id="ubi" class="mdb-select md-form" editable="false" searchable="Buscar Ubicacion...">
+                                    <label for="ubi" class="mdb-main-label">Ubicacion</label>
+                                    <option value="1">Cuarto Frio</option>
+                                    <option value="2">San Lorenzo</option>
+                                    <option value="3">Suragroh</option>
+                                    <option value="4">Santa Rosa</option>
+                                    <option value="5">Ojo de Agua</option>
+                                </select>
                             </div>
                             <div class="col-12">
-                                <button class="btn btn-primary" type="submit">Reistrar</button>
+                                <button class="btn btn-primary" type="submit">Registrar</button>
                             </div>
-                        </form>  
+                            <!-- Grid row -->
+                        </form>
+                        <!-- Material form row -->
                     </section>                                                      
                 </div>
             </div>
