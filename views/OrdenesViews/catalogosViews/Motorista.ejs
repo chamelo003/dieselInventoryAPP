@@ -2,7 +2,7 @@
 <html lang="en">
 <%include ../../Layouts/Ordenes/Header.ejs %>
 <%include ../../Layouts/Ordenes/tabs.ejs %>
-
+<%include ./modal.ejs %>
     <div class="container-fluid">
         <div class="col-md-12">
             <div class="tab-content" id="ex2-content">
@@ -15,6 +15,7 @@
                 >
                     <!--ZAMPAR AQUI TODO EL MIERDERO DE LA TABLA DE MOTORISTAS-->
                     <h2>asumamos que aqui va la lista de <%=title%></h2>
+                    <br>                    
                 </div>
                 <!--TAB PARA FORM DE REGISTRO-->
                 <div
@@ -25,6 +26,10 @@
                 >
                     <!--ZAMPAR AQUI EL FORM DE REGISTRO-->
                     <h2>asumamos que aquí va el form de <%= title %></h2>
+                    <p>boton para la modal aqui abajo (supongo)</p>
+                    <!-- Button trigger modal -->
+                    <Label for="Transporista">Transportista</Label>
+                    <input type="text" name="Transportistas" id="Transportista" data-toggle="modal" data-target="#modalTransportistas">
                 </div>
             </div>
         </div>
