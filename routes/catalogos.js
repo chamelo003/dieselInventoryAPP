@@ -18,7 +18,7 @@ var catalogosController = require('../controllers/catalogosController');
 // Link en la vista: ('/catalogos/autorizan')
 catalogosRouter.get('/autorizan',(req,res,next)=>{
     //res.send('aqui vas a ver despues la lista de los que autorizan xD');
-    res.render('./OrdenesViews/catalogosViews/frmAgAutoriza',{title:'Autorizadores',data:'data de ejemplo autoriza'})
+    res.render('./OrdenesViews/catalogosViews/Autoriza',{title:'Autorizadores',data:'data de ejemplo autoriza'})
 });
 //#endregion
 
@@ -27,7 +27,8 @@ catalogosRouter.get('/autorizan',(req,res,next)=>{
 // Ruta para ver el listado de los transportistas 16/SEPT/2020
 // Link en la vista: ('/catalogos/trans')
 catalogosRouter.get('/trans',(req,res,next)=>{
-    res.send('lista de los transportistas');
+    //res.send('lista de los transportistas');
+    res.render('./OrdenesViews/catalogosViews/Transportista',{title:'Transportistas',data:'data de ejemplo transportistas :v'})
 });
 //#endregion
 
@@ -36,7 +37,8 @@ catalogosRouter.get('/trans',(req,res,next)=>{
 // Ruta para ver el listado de los motoristas 16/sept/2020
 // Link en la vista: ('/catalogos/mot')
 catalogosRouter.get('/mot',(req,res,next)=>{
-    res.send('lista de los motoristas');
+    //res.send('lista de los motoristas');
+    res.render('./OrdenesViews/catalogosViews/Motorista',{title:'Motoristas',data:'data de ejemplo motorista :v'})
 });
 //#endregion
 
