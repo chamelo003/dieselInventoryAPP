@@ -14,7 +14,13 @@ $(document).ready( function (){
         //alert(RtnTrans);
         // Asignamos el RTN seleccionado y sin espacios a la textbox correspondiente.
         $('#Transportista').val(RtnTrans);
+        $('#modalTransportistas').modal('hide');
     });
 
+    $('#listado').DataTable({
+        "language":{
+            "url":"//Spanish.json"
+        }
+    });
 });
 
