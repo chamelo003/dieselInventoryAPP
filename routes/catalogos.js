@@ -47,7 +47,8 @@ catalogosRouter.get('/mot',(req,res,next)=>{
 // Ruta para ver los tipos de vehiculos 16/sept/2020
 // Link en la vista: ('/catalogos/tv')
 catalogosRouter.get('/tv',(req,res,next)=>{
-    res.send('lista de tipos de vehiculos');
+    //res.send('lista de tipos de vehiculos');
+    res.render('./OrdenesViews/catalogosViews/TiposVehiculos',{title:'Tipos de vehiculos'});
 });
 //#endregion
 
@@ -56,7 +57,8 @@ catalogosRouter.get('/tv',(req,res,next)=>{
 // Ruta para ver los vehiculos 16/sept/2020
 // Link en la vista: ('/catalogos/veh')
 catalogosRouter.get('/veh',(req,res,next)=>{
-    res.send('lista de vehiculos');
+    //res.send('lista de vehiculos');
+    res.render('./OrdenesViews/catalogosViews/Vehiculos',{title:'Vehiculos'});
 });
 //#endregion
 
@@ -65,7 +67,8 @@ catalogosRouter.get('/veh',(req,res,next)=>{
 // Ruta para ver las ubicaciones 16/sept/2020
 // Link en la vista: ('/catalogos/loc')
 catalogosRouter.get('/loc',(req,res,next)=>{
-    res.send('lista de tipos de ubicaciones');
+    //res.send('lista de tipos de ubicaciones');
+    res.render('./OrdenesViews/catalogosViews/Ubicaciones',{title:'Ubicaciones'});
 });
 //#endregion
 
@@ -74,7 +77,8 @@ catalogosRouter.get('/loc',(req,res,next)=>{
 // Ruta para ver listado de bombas 16/sept/2020
 // Link en la vista: ('/catalogos/bomb')
 catalogosRouter.get('/bomb',(req,res,next)=>{
-    res.send('lista de bombas');
+    //res.send('lista de bombas');
+    res.render('./OrdenesViews/catalogosViews/Bombas',{title:'Bombas'});
 });
 //#endregion
 
@@ -83,7 +87,8 @@ catalogosRouter.get('/bomb',(req,res,next)=>{
 // Ruta para ver lsitado de bomberos 16/sept/2020
 // Link en la vista: ('/catalogos/bombs')
 catalogosRouter.get('/bombs',(req,res,next)=>{
-    res.send('lista de bomberos');
+    //res.send('lista de bomberos');
+    res.render('./OrdenesViews/catalogosViews/Bomberos',{title:'Bomberos'});
 });
 //#endregion
 
@@ -92,7 +97,8 @@ catalogosRouter.get('/bombs',(req,res,next)=>{
 // Ruta para ver lista de tipos de salidas 16/sept/2020
 // Link en la vista: ('/catalogos/tv')
 catalogosRouter.get('/tps',(req,res,next)=>{
-    res.send('lista de tipos de salida');
+    //res.send('lista de tipos de salida');
+    res.render('./OrdenesViews/catalogosViews/TiposSalidas',{title:'Tipos de salidas'});
 });
 //#endregion
 

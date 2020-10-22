@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<% include ../../Layouts/Ordenes/Header.ejs %>
-<% include ../../Layouts/Ordenes/tabs.ejs %>
-<!--BODY DE LAS TABAS (METER TABLAS Y FORM DE REGISTRO -->
-<div class="container-fluid">
-    <div class="col-md-12">
-        <div class="tab-content" id="ex2-content">
-            <!--TAB PARA LISTADO-->
+<%include ../../Layouts/Ordenes/Header.ejs %>
+<%include ../../Layouts/Ordenes/tabs.ejs %>
+<%include ./modal.ejs %>
+    <div class="container-fluid">
+        <div class="col-md-12">
+            <div class="tab-content" id="ex2-content">
+                <!--TAB PARA TABLA DE LISTADO-->
                 <div
                 class="tab-pane fade show active"
                 id="ex3-tabs-1"
                 role="tabpanel"
                 aria-labelledby="listado"
                 >
-                    <!--AQUI VA TODO EL VERGASEO DEL LISTADO-->
+                    <!--ZAMPAR AQUI TODO EL MIERDERO DE LA TABLA DE VEHICULOS-->
                     <div class="row border border-light">
                         <div class="col-lg-12">
                             <table class="hover listado" >
                                 <thead>
                                     <tr>
-                                        <th>RTN</th>
-                                        <th>Nombre</th>
-                                        <th>Apellido</th>
-                                        <th>Observacion</th>                        
+                                        <th>Placa </th>
+                                        <th>Marca</th>
+                                        <th>Tipo de vehiculo</th>
+                                        <th>Observacion</th>
+                                        <th>Motorista</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -30,43 +31,42 @@
                                 </tbody>
                             </table>  
                         </div>
-                    </div>  
+                    </div>                                     
                 </div>
-
-            <!--TAB PARA FORM DE REGISTRO-->
+                <!--TAB PARA FORM DE REGISTRO-->
                 <div
                 class="tab-pane fade"
                 id="ex3-tabs-2"
                 role="tabpanel"
                 aria-labelledby="regform"
                 >
-                    <!--METER EL FORM DEL REGISTRO AQUI-->
+                    <!--ZAMPAR AQUI EL FORM DE REGISTRO-->
                     <div class="row d-flex justify-content-center">
-                        <form class="text-center border border-light p-5 col-md-4" action="#" method="POST">
+                        <form class="text-center border border-light p-5 col-md-4" action="#" >
                             <!-- Grid row -->
                             <div class="form-row">
                             <!-- Grid column -->
                             <div class="col-lg-12">
                                 <!-- Material input -->
                                 <div class="md-form mt-0">
-                                    <input id="rtnTrans" type="text" class="form-control" required>
-                                    <label for="rtnTrans">RTN</label>
+                                    <input id="placa" type="text" class="form-control" required>  
+                                    <label for="placa">Placa</label>                                  
                                 </div>
                             </div>
                             <!-- Grid column -->
                             <div class="md-form col-lg-12">
                                 <!-- Material input -->
                                 <div class="md-form mt-0">
-                                    <input id="nombre" type="text" class="form-control" required>
-                                    <label for="nombre">Nombres</label>
+                                    <input id="marca" type="text" class="form-control" required> 
+                                    <label for="marca">Marca</label>                                   
                                 </div>
                             </div>
                             <!-- Grid column -->
                             <div class="md-form col-lg-12">
                                 <!-- Material input -->
                                 <div class="md-form mt-0">
-                                    <input id="apellido" type="text" class="form-control" required>
-                                    <label for="apellido">Apellidos</label>
+                                    <input id="tv" type="text" class="form-control" required>       
+                                    <label for="tv">Tipo de vehiculo</label>                             
                                 </div>
                             </div>                          
                             <!-- Grid column -->
@@ -74,15 +74,24 @@
                                 <textarea id="form7" class="md-textarea form-control" rows="3"></textarea>
                                 <label for="form7">Observacion</label>
                             </div>
+                            <!-- Grid column -->
+                            <div class="md-form col-lg-12">
+                                <div class="md-form mt-0">
+                                    <!--el data-toggle="modal" es el que activa la modal. el data-target es el nombre de la modal que debe activar-->
+                                    <input required="required" class="form-control openModal4Id" type="text" name="Motorista" id="idMotorista" data-toggle="modal" data-target="#modalExtData">
+                                    <label for="idMotorista">Motorista</label>
+                                </div>                                
+                            </div>
+                            </div>
                             <div class="col-md-12">
-                                <button class="btn btn-primary" type="submit">Registrar</button>
+                                <button id="regMot" class="btn btn-primary" type="submit">Registrar</button>
                             </div>
                             <!-- Grid row -->
                         </form> 
-                    </div>     
+                    </div>                        
                 </div>
+            </div>
         </div>
     </div>
-</div> 
 <%include ../../Layouts/Ordenes/Footer.ejs %>
 </html>

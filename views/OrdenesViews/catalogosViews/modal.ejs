@@ -1,56 +1,73 @@
 
-  
+<div  class="datatable">
   <!-- Modal -->
-  <div class="modal fade" id="modalTransportistas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  <div class="modal fade" id="modalExtData" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Listado de transportistas</h5>
+          <!--ESTABLECER EL TITULO DE LA MODAL SEGUN EL TITULO DE LA RUTA
+              - SI LA RUTA ES MOTORISTAS HAY QUE MOSTRAR LOS TRANSPORTISTAS
+              - SI LA RUTA ES VEHICULOS HAY QUE MOSTRAR LOS MOTORISTAS
+          -->
+          <% if (title == "Motoristas"){ %>
+            <h5 class="modal-title" id="exampleModalLabel">SELECCIONE EL TRANSPORTISTA</h5>
+          <% } %>
+          
+          <% if (title == "Vehiculos"){ %>
+            <h5 class="modal-title" id="exampleModalLabel">SELECCIONE EL MOTORISTA</h5>
+          <% } %>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <h2>ASUMAMOS QUE AQUI VA EL LISTADO...</h2>
-          <table id="listado">
-              <thead>
-                  <tr>
-                      <th>
-                          RTN
-                      </th>
-                      <th>
-                          NOMBRE
-                      </th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr>
-                      <td class='RTN'>
-                        06071996010488
-                      </td>
-                      <td>
-                        samuel vasquez
-                      </td>
-                  </tr>
-                  <tr>
+          <!--SI EL TITULO DE A PAGINA ES MOTORISTAS VA A MOSTRAR LA TABLA DE LISTADO DE TRANSPORTISTAS-->
+          <% if (title == "Motoristas"){ %>
+            <H4>Listado de Transportistas</H4>
+            <table class="hover listado">
+                <thead>
+                    <tr>
+                        <th>
+                            RTN
+                        </th>
+                        <th>
+                            NOMBRE
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class='RTN'>
+                          06071996010488
+                        </td>
+                        <td>
+                          samuel vasquez
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="RTN">
+                          08161956000744
+                        </td>
+                        <td>
+                          Victor avila
+                        </td>
+                    </tr>
+                    <tr>
                       <td class="RTN">
-                        08161956000744
+                        0601197023658
                       </td>
                       <td>
-                        Victor avila
+                        Aniceto Monlina
                       </td>
-                  </tr>
-                  <tr>
-                    <td class="RTN">
-                      0601197023658
-                    </td>
-                    <td>
-                      Aniceto Monlina
-                    </td>
-                  </tr>
-              </tbody>
-          </table>
+                    </tr>
+                </tbody>
+            </table>
+          <% } %>
+          <!--SI EL TITULO DE LA PAGINA ES Vehiculos muestra la lista de los motoristas -->
+          <% if (title == "Vehiculos"){ %>
+            <h4>Listado de Motoristas</h4>
+          <% } %>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -58,3 +75,4 @@
       </div>
     </div>
   </div>
+</div> 

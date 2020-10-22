@@ -7,20 +7,25 @@ $(document).ready( function (){
 
     // funcion para llenar el transportista al ingresar un motorista.
     $('.RTN').dblclick(function(){
-        // Asignamos el RTN seleccionado a la variable RtnTrans
+        // Asignamos el RTN seleccionado EN LA TABLA DE LA MODAL a la variable RtnTrans
         RtnTrans = $(this).text();
         // Quitamos todos los espacios que tenga la cadena de texto.
         RtnTrans = RtnTrans.replace(/\s/g,'');
         //alert(RtnTrans);
         // Asignamos el RTN seleccionado y sin espacios a la textbox correspondiente.
-        $('#Transportista').val(RtnTrans);
-        $('#modalTransportistas').modal('hide');
+        $('#rtnTrans').val(RtnTrans);        
+        $('#modalExtData').modal('hide');
     });
 
-    $('#listado').DataTable({
+    // Validar que no se modifiquen los inputs que obtienen los id de una modal
+    $('.openModal4Id').keydown(function(e){
+        e.preventDefault();
+    });
+
+
+    $('.listado').DataTable({
         "language":{
-            "url":"//Spanish.json"
+            "url":"/javascripts/Spanish.json"
         }
     });
 });
-

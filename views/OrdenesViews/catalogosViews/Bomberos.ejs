@@ -19,11 +19,11 @@
                             <table class="hover listado" >
                                 <thead>
                                     <tr>
-                                        <th>Identidad</th>
+                                        <th>Id</th>
                                         <th>Nombre</th>
                                         <th>Apellido</th>
                                         <th>Observacion</th>
-                                        <th>Transportista</th>
+                                        <th>Bomba asignada</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -46,27 +46,19 @@
                             <!-- Grid row -->
                             <div class="form-row">
                             <!-- Grid column -->
-                            <div class="col-lg-12">
+                            <div class="md-form col-lg-12">
                                 <!-- Material input -->
                                 <div class="md-form mt-0">
-                                    <input id="Identidad" type="text" class="form-control" required>
-                                    <label for="Identidad">Identidad</label>                                    
+                                    <input id="nombre" type="text" class="form-control" required>    
+                                    <label for="nombre">Nombres</label>                                
                                 </div>
                             </div>
                             <!-- Grid column -->
                             <div class="md-form col-lg-12">
                                 <!-- Material input -->
                                 <div class="md-form mt-0">
-                                    <input id="nom" type="text" class="form-control"  required>                                    
-                                    <label for="nom">Nombre</label>
-                                </div>
-                            </div>
-                            <!-- Grid column -->
-                            <div class="md-form col-lg-12">
-                                <!-- Material input -->
-                                <div class="md-form mt-0">
-                                    <input id="apellido" type="text" class="form-control" required>   
-                                    <label for="apellido">Apellido</label>                                 
+                                    <input id="apellido" type="text" class="form-control" required>       
+                                    <label for="apellido">Apellidos</label>                             
                                 </div>
                             </div>                          
                             <!-- Grid column -->
@@ -78,7 +70,14 @@
                             <div class="md-form col-lg-12">
                                 <div class="md-form mt-0">
                                     <!--el data-toggle="modal" es el que activa la modal. el data-target es el nombre de la modal que debe activar-->
-                                    <input required="required" class="form-control openModal4Id" placeholder="RTN Transporista" type="text" name="Transportistas" id="rtnTrans" data-toggle="modal" data-target="#modalExtData">
+                                    <!--input required="required" class="form-control" placeholder="RTN Transporista" type="text" name="Transportistas" id="rtnTrans" data-toggle="modal" data-target="#modalExtData"-->
+                                    <select required="required" class="browser-default custom-select">
+                                        <option disabled selected value="">Elija la bomba asignada</option>
+                                        <option value="1">Cuarto Frio</option>
+                                        <option value="2">Suragroh</option>
+                                        <option value="3">Santa Rosa</option>
+                                        <option value="4">Ojo de Agua</option>
+                                    </select>
                                 </div>                                
                             </div>
                             </div>

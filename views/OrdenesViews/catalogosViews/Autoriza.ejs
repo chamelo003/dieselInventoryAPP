@@ -15,55 +15,57 @@
                 role="tabpanel"
                 aria-labelledby="listado"
                 >
-                    <!--METER LA TABLA DEL LISTADO AQUI-->
-                    <div  class="datatable">
-                        <table id="listado" class="table" cellspacing="0" width="100%">
-                            <thead>
-                            <tr>
-                                <th class="th-sm">Name</th>
-                                <th class="th-sm">Position</th>
-                                <th class="th-sm">Office</th>
-                                <th class="th-sm">Age</th>
-                                <th class="th-sm">Start date</th>
-                                <th class="th-sm">Salary</th>
-                            </tr>
-                            </thead>
-                            <tbody class="table-hover">
-                            <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>2011/04/25</td>
-                                <td>$320,800</td>
-                            </tr>
-                        
-                            <tr>
-                                <td>Sonya Frost</td>
-                                <td>Software Engineer</td>
-                                <td>Edinburgh</td>
-                                <td>23</td>
-                                <td>2008/12/13</td>
-                                <td>$103,600</td>
-                            </tr>
-                            <tr>
-                                <td>Jena Gaines</td>
-                                <td>Office Manager</td>
-                                <td>London</td>
-                                <td>30</td>
-                                <td>2008/12/19</td>
-                                <td>$90,560</td>
-                            </tr>
-                            <tr>
-                                <td>Quinn Flynn</td>
-                                <td>Support Lead</td>
-                                <td>Edinburgh</td>
-                                <td>22</td>
-                                <td>2013/03/03</td>
-                                <td>$342,000</td>
-                            </tr>
-                            </tbody>
-                        </table>
+                    <div class="row border border-light">
+                        <div class="col-lg-12">
+                            <!--METER LA TABLA DEL LISTADO AQUI-->                    
+                            <table class="hover listado" cellspacing="0" width="100%">
+                                <thead>
+                                <tr>
+                                    <th class="th-sm">Name</th>
+                                    <th class="th-sm">Position</th>
+                                    <th class="th-sm">Office</th>
+                                    <th class="th-sm">Age</th>
+                                    <th class="th-sm">Start date</th>
+                                    <th class="th-sm">Salary</th>
+                                </tr>
+                                </thead>
+                                <tbody class="table-hover">
+                                <tr>
+                                    <td>Tiger Nixon</td>
+                                    <td>System Architect</td>
+                                    <td>Edinburgh</td>
+                                    <td>61</td>
+                                    <td>2011/04/25</td>
+                                    <td>$320,800</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Sonya Frost</td>
+                                    <td>Software Engineer</td>
+                                    <td>Edinburgh</td>
+                                    <td>23</td>
+                                    <td>2008/12/13</td>
+                                    <td>$103,600</td>
+                                </tr>
+                                <tr>
+                                    <td>Jena Gaines</td>
+                                    <td>Office Manager</td>
+                                    <td>London</td>
+                                    <td>30</td>
+                                    <td>2008/12/19</td>
+                                    <td>$90,560</td>
+                                </tr>
+                                <tr>
+                                    <td>Quinn Flynn</td>
+                                    <td>Support Lead</td>
+                                    <td>Edinburgh</td>
+                                    <td>22</td>
+                                    <td>2013/03/03</td>
+                                    <td>$342,000</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <!--TAB PARA FORM DE REGISTRO-->
@@ -77,7 +79,7 @@
                     <!--section class="border p-4  d-flex justify-content-center"-->
                         <!-- Material form row -->
                     <div class="row d-flex justify-content-center">
-                        <form class="text-center border border-light p-5 col-md-4" action="#">
+                        <form class="text-center border border-light p-5 col-md-4" action="#" method="POST">
                             <!-- Grid row -->
                             <div class="form-row">
                             <!-- Grid column -->
@@ -97,8 +99,8 @@
                             <!-- Grid column -->
                             </div>
                             <div class="md-form col-lg-12">
-                                <select required class="browser-default custom-select">
-                                    <option disabled selected>Elija la ubicacion</option>
+                                <select required="required" class="browser-default custom-select">
+                                    <option disabled selected value="">Elija la ubicacion</option>
                                     <option value="1">Cuarto Frio</option>
                                     <option value="2">San Lorenzo</option>
                                     <option value="3">Suragroh</option>
