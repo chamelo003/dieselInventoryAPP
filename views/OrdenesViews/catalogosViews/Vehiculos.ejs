@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <%include ../../Layouts/Ordenes/Header.ejs %>
 <%include ../../Layouts/Ordenes/tabs.ejs %>
 <%include ./modal.ejs %>
@@ -49,7 +49,7 @@
                             <div class="col-lg-12">
                                 <!-- Material input -->
                                 <div class="md-form mt-0">
-                                    <input id="placa" type="text" class="form-control" required>  
+                                    <input id="placa" type="text" class="form-control" required pattern="[A-Z]{3}[0-9]{4}" autocomplete="off">  
                                     <label for="placa">Placa</label>                                  
                                 </div>
                             </div>
@@ -57,7 +57,7 @@
                             <div class="md-form col-lg-12">
                                 <!-- Material input -->
                                 <div class="md-form mt-0">
-                                    <input id="marca" type="text" class="form-control" required> 
+                                    <input id="marca" type="text" class="form-control" autocomplete="off" data-toggle="modal" data-target="#modalExtData" required> 
                                     <label for="marca">Marca</label>                                   
                                 </div>
                             </div>
@@ -65,20 +65,22 @@
                             <div class="md-form col-lg-12">
                                 <!-- Material input -->
                                 <div class="md-form mt-0">
-                                    <input id="tv" type="text" class="form-control" required>       
+                                    <input id="tv" type="text" class="form-control" autocomplete="off" data-toggle="modal" data-target="#modalExtData" required>       
                                     <label for="tv">Tipo de vehiculo</label>                             
                                 </div>
                             </div>                          
                             <!-- Grid column -->
                             <div class="md-form col-lg-12">
-                                <textarea id="form7" class="md-textarea form-control" rows="3"></textarea>
+                                <textarea id="form7" class="md-textarea form-control" rows="3" autocomplete="off"></textarea>
                                 <label for="form7">Observacion</label>
                             </div>
                             <!-- Grid column -->
                             <div class="md-form col-lg-12">
                                 <div class="md-form mt-0">
                                     <!--el data-toggle="modal" es el que activa la modal. el data-target es el nombre de la modal que debe activar-->
-                                    <input required="required" class="form-control openModal4Id" type="text" name="Motorista" id="idMotorista" data-toggle="modal" data-target="#modalExtData">
+                                    <input required="required" class="form-control openModal4Id" type="text" name="Motorista" id="idMotorista"
+                                     data-toggle="modal" data-target="#modalExtData" autocomplete="off"
+                                    >
                                     <label for="idMotorista">Motorista</label>
                                 </div>                                
                             </div>

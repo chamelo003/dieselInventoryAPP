@@ -17,12 +17,17 @@ $(document).ready( function (){
         $('#modalExtData').modal('hide');
     });
 
+    // funcion para cambiar el titulo a la pagina y abrir la modal xD a ver si funca :v
+    $('#marca').click(function(){
+        document.getElementsByTagName("title").text = "marca";
+    })
+
     // Validar que no se modifiquen los inputs que obtienen los id de una modal
     $('.openModal4Id').keydown(function(e){
         e.preventDefault();
     });
 
-
+    // Poner en español las data tables
     $('.listado').DataTable({
         "language":{
             "url":"/javascripts/Spanish.json"
