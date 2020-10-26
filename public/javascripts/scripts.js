@@ -5,6 +5,8 @@
 ************************************************************/
 $(document).ready( function (){
 
+//#region misc functions
+
     // funcion para llenar el transportista al ingresar un motorista.
     $('.RTN').dblclick(function(){
         // Asignamos el RTN seleccionado EN LA TABLA DE LA MODAL a la variable RtnTrans
@@ -27,10 +29,21 @@ $(document).ready( function (){
         e.preventDefault();
     });
 
+    // Funcion para ocultar y mostrar elementos en la modal.
+    // Esperamos ocultar y mostrar info (titulo y body) de acuerdo a lo que se elija
+    // en las views que requieren uso de la ventana modal.
+
+
+//#endregion
+
+//#region data tables
     // Poner en español las data tables
     $('.listado').DataTable({
         "language":{
             "url":"/javascripts/Spanish.json"
         }
     });
+//#endregion
+
+
 });

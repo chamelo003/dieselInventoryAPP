@@ -58,7 +58,7 @@ catalogosRouter.get('/tv',(req,res,next)=>{
 // Link en la vista: ('/catalogos/veh')
 catalogosRouter.get('/veh',(req,res,next)=>{
     //res.send('lista de vehiculos');
-    res.render('./OrdenesViews/catalogosViews/Vehiculos',{title:'Vehiculos',marca:true,tv:true});
+    res.render('./OrdenesViews/catalogosViews/Vehiculos',{title:'Vehiculos'});
 });
 //#endregion
 

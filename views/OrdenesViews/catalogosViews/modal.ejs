@@ -15,12 +15,9 @@
           <% } %>
           
           <% if (title == "Vehiculos"){ %>
-            <h5 class="modal-title" id="exampleModalLabel">SELECCIONE EL MOTORISTA</h5>
+            <h5 class="modal-title" id="modalTitleMotorista">SELECCIONE EL MOTORISTA</h5>
           <% } %>
 
-          <% if (marca){ %>
-            <h5 class="modal-title" id="exampleModalLabel">SELECCIONE LA MARCA DEL VEHICULO</h5>
-          <% } %>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -28,7 +25,8 @@
         <div class="modal-body">
           <!--SI EL TITULO DE A PAGINA ES MOTORISTAS VA A MOSTRAR LA TABLA DE LISTADO DE TRANSPORTISTAS-->
           <% if (title == "Motoristas"){ %>
-            <H4>Listado de Transportistas</H4>
+            <div class="modalListMotoristas">
+              <H4>Listado de Transportistas</H4>
             <table class="hover listado">
                 <thead>
                     <tr>
@@ -67,15 +65,12 @@
                     </tr>
                 </tbody>
             </table>
+            </div>
           <% } %>
           <!--SI EL TITULO DE LA PAGINA ES Vehiculos muestra la lista de los motoristas -->
           <% if (title == "Vehiculos"){ %>
             <h4>Listado de Motoristas</h4>
-          <% } %>
-          <!--SI EL TITULO ES MARCA Y SE ABRE LA MODAL VA A MOSTAR LA LISTA DE MARCAS PARA VEHICULOS-->
-          <% if (marca == true){ %>
-            <h4>Listado de marcas</h4>
-          <% } %>
+          <% } %>          
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
