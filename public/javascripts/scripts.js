@@ -19,11 +19,6 @@ $(document).ready( function (){
         $('#modalExtData').modal('hide');
     });
 
-    // funcion para cambiar el titulo a la pagina y abrir la modal xD a ver si funca :v
-    $('#marca').click(function(){
-        document.getElementsByTagName("title").text = "marca";
-    })
-
     // Validar que no se modifiquen los inputs que obtienen los id de una modal
     $('.openModal4Id').keydown(function(e){
         e.preventDefault();
@@ -32,18 +27,42 @@ $(document).ready( function (){
     // Funcion para ocultar y mostrar elementos en la modal.
     // Esperamos ocultar y mostrar info (titulo y body) de acuerdo a lo que se elija
     // en las views que requieren uso de la ventana modal.
-
+    $('#idMot').click(function(){
+        $('.marca').hide();
+        $('.tv').hide();
+        $('.mot').show();
+        llenarInput('#idMot');
+    });
+    $('#tv').click(function(){
+        $('.marca').hide();
+        $('.mot').hide();
+        $('.tv').show();
+        llenarInput('#tv');
+    });
+    $('#marca').click(function(){
+        $('.tv').hide();
+        $('.mot').hide();
+        $('.marca').show();        
+    })
+    //tdselector();
+    // funcion para elegir los id si se seleccionan los nombres de motoristas, o marcas, o tipos de vehiculos
+    // y colocarlos en el input correspondiente en el dom los tags td tienen una clase llamada tdselector
+        $('.tdselector').dblclick(function (){
+            nombre = $(this).text();
+            console.log("nombreItem:"+nombre);
+            var iditem = $(this).prev('td').text();
+            console.log("idItem:"+iditem);
+        });
 
 //#endregion
 
 //#region data tables
-    // Poner en español las data tables
+    // Poner en español las data tables que tenga la clase "listado"
     $('.listado').DataTable({
         "language":{
             "url":"/javascripts/Spanish.json"
         }
     });
 //#endregion
-
 
 });

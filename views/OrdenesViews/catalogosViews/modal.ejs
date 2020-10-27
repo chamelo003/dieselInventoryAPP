@@ -11,13 +11,15 @@
               - SI LA RUTA ES VEHICULOS HAY QUE MOSTRAR LOS MOTORISTAS
           -->
           <% if (title == "Motoristas"){ %>
-            <h5 class="modal-title" id="exampleModalLabel">SELECCIONE EL TRANSPORTISTA</h5>
-          <% } %>
-          
-          <% if (title == "Vehiculos"){ %>
-            <h5 class="modal-title" id="modalTitleMotorista">SELECCIONE EL MOTORISTA</h5>
+            <h5 class="modal-title trans">SELECCIONE EL TRANSPORTISTA</h5>
           <% } %>
 
+          <!--Esto se va a ocultar y mostrar con jquery-->
+          <% if (title == "Vehiculos"){ %>
+            <h5 class="modal-title mot">SELECCIONE EL MOTORISTA</h5>
+            <h5 class="modal-title marca">SELECCIONE LA MARCA</h5>
+            <h5 class="modal-title tv">SELECCIONE EL TIPO DE VEHICULO</h5>
+          <% } %>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -67,9 +69,81 @@
             </table>
             </div>
           <% } %>
-          <!--SI EL TITULO DE LA PAGINA ES Vehiculos muestra la lista de los motoristas -->
+          <!--SI EL TITULO DE LA PAGINA ES Vehiculos muestra lo necesario para llenar el form de vehiculos
+          esto incluye Tipo de vehiculo, marca y motorista. Cada categoria se va a mostrar mediante jquery -->
           <% if (title == "Vehiculos"){ %>
-            <h4>Listado de Motoristas</h4>
+            <!--Listado de motoristas. Se va a mostrar cuando la clase .mot sea marcado como visible-->
+            <div class="mot">
+              <h4>Listado de Motoristas</h4>
+              <table class="hover listado">
+                <thead>
+                  <tr>
+                    <th>Identidad</th>
+                    <th>Motorista</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>0601195812345</td>
+                    <td class="tdselector">Juan Pirulo</td>
+                  </tr>
+                  <tr>
+                    <td>0602196612345</td>
+                    <td class="tdselector">Elver Galarga</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="marca">
+              <h4>Listado de Marcas</h4>
+              <table class="hover listado">
+                <thead>
+                  <tr>
+                    <th>IdMarca</th>
+                    <th>Marca</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td class="tdselector">Toyota</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td class="tdselector">Nissan</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td class="tdselector">John Deere</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="tv">
+              <h4>Listado de Tipos de Vehiculos</h4>
+              <table class="hover listado">
+                <thead>
+                  <tr>
+                    <th>IdTipo</th>
+                    <th>Tipo de Vehiculo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td class="tdselector">PickUp</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td class="tdselector">Ambulancia</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td class="tdselector">Cabezal Alquilado</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           <% } %>          
         </div>
         <div class="modal-footer">
