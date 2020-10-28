@@ -30,30 +30,48 @@ $(document).ready( function (){
     $('#idMot').click(function(){
         $('.marca').hide();
         $('.tv').hide();
-        $('.mot').show();
-        llenarInput('#idMot');
-    });
+        $('.mot').show();    
+        $('.tdselector').dblclick(function (){
+            nombre = $(this).text();
+            console.log("nombreItem:"+nombre);
+            iditem = $(this).prev('td').text();
+            console.log(iditem)
+            $('#idMot').val(iditem);
+        });   
+    })
     $('#tv').click(function(){
         $('.marca').hide();
         $('.mot').hide();
-        $('.tv').show();
-        llenarInput('#tv');
+        $('.tv').show();    
+        $('.tdselector').dblclick(function (){
+            nombre = $(this).text();
+            console.log("nombreItem:"+nombre);
+            iditem = $(this).prev('td').text();
+            console.log(iditem)
+            $('#tv').val(iditem);
+        });  
     });
     $('#marca').click(function(){
         $('.tv').hide();
         $('.mot').hide();
-        $('.marca').show();        
-    })
+        $('.marca').show();
+        $('.tdselector').dblclick(function (){
+            nombre = $(this).text();
+            console.log("nombreItem:"+nombre);
+            iditem = $(this).prev('td').text();
+            console.log(iditem)
+            $('#marca').val(iditem);
+        });
+    });
     //tdselector();
     // funcion para elegir los id si se seleccionan los nombres de motoristas, o marcas, o tipos de vehiculos
     // y colocarlos en el input correspondiente en el dom los tags td tienen una clase llamada tdselector
         $('.tdselector').dblclick(function (){
             nombre = $(this).text();
             console.log("nombreItem:"+nombre);
-            var iditem = $(this).prev('td').text();
-            console.log("idItem:"+iditem);
+            iditem = $(this).prev('td').text();
+            console.log(iditem)
         });
-
 //#endregion
 
 //#region data tables

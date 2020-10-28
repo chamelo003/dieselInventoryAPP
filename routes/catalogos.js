@@ -6,10 +6,11 @@
 *   se encuentran en: /views/Layouts/Login/Header.ejs
 *****************************************************/
 // Requerimos las librerias necesarias para que funcione xD
+
 var express = require('express');
 var catalogosRouter = express.Router();
 var catalogosController = require('../controllers/catalogosController');
-
+ 
 //meta las rutas aqui lince
 
 //#region AUTORIZADORES

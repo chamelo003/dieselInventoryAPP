@@ -15,7 +15,7 @@ let dbString = {
     password: 'H@ck3r$h0w',
     database: 'Diesel'
 }
-
+var async = require('async'); 
 // Requerimos el conector
 const mysql = require('mysql');
 
@@ -27,4 +27,3 @@ conn.connect(err=>{
     // Operador ternario si hay error lanza el codigo de error sino lanza mensaje de todo bien todo correcto
     return (err) ? console.log('Error al conectar con la DB: '+err.stack) : console.log('Connected to DB!');
 });
-
