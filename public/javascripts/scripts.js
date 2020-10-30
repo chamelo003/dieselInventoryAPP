@@ -5,7 +5,7 @@
 ************************************************************/
 $(document).ready( function (){
 
-//#region misc functions
+//#region misc functions for CATALOGOS VIEWS
 
     // funcion para llenar el transportista al ingresar un motorista.
     $('.RTN').dblclick(function(){
@@ -31,7 +31,7 @@ $(document).ready( function (){
         $('.marca').hide();
         $('.tv').hide();
         $('.mot').show();    
-        $('.tdselector').dblclick(function (){
+        $('.mottdselector').dblclick(function (){
             nombre = $(this).text();
             console.log("nombreItem:"+nombre);
             iditem = $(this).prev('td').text();
@@ -43,7 +43,7 @@ $(document).ready( function (){
         $('.marca').hide();
         $('.mot').hide();
         $('.tv').show();    
-        $('.tdselector').dblclick(function (){
+        $('.tvtdselector').dblclick(function (){
             nombre = $(this).text();
             console.log("nombreItem:"+nombre);
             iditem = $(this).prev('td').text();
@@ -55,7 +55,7 @@ $(document).ready( function (){
         $('.tv').hide();
         $('.mot').hide();
         $('.marca').show();
-        $('.tdselector').dblclick(function (){
+        $('.mtdselector').dblclick(function (){
             nombre = $(this).text();
             console.log("nombreItem:"+nombre);
             iditem = $(this).prev('td').text();
@@ -73,14 +73,19 @@ $(document).ready( function (){
             console.log(iditem)
         });
 //#endregion
+$('#fecha').change(function(){
+    alert($(this).val());
+})
 
+//#region MISC FUNCTIONS FOR MOVIMIENTOS VIEWS
+
+//#endregion
 //#region data tables
-    // Poner en español las data tables que tenga la clase "listado"
+    // Poner lenguage en español las tablas y darles formato data tables
     $('.listado').DataTable({
         "language":{
             "url":"/javascripts/Spanish.json"
         }
     });
 //#endregion
-
 });

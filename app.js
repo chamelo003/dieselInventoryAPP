@@ -4,12 +4,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-
-// Cueston para manejo de sesiones :v (CHAMBAL PERRO) 12/OCT/2020
-var session = require('express-session');
-var MySQLStore = require('express-mysql-session')(session);
-var options = {};
-
 // CREAMOS VARIABLES PARA ALMACENAR LAS RUTAS CREADAS Y PODER USARLAS
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -29,8 +23,31 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+// Cueston para manejo de sesiones :v (CHAMBAL PERRO) 12/OCT/2020
+var session = require('express-session');
+var MySQLStore = require('express-mysql-session')(session);
+var options = {};
+
+app.use(session({
+  secret:'Ez1S3kreTH0ktuM1r@daiLaMIA_xD',
+  resave: false,
+  saveUninitialized: false
+}));
+
+/*/ MIDDLEWARES 30/10/2020
+const flash = require('connect-flash');
+app.use(flash);
+
+// VARIABLES GLOBALES aqui voy a guardar todo del usuario excepto la password xD me interesa mas la ubicacion y el username
+app.use((req,res,next)=>{
+  app.locals.user = req.flash('success');
+  next();
+});
+*/
+
 // USAMOS LAS RUTAS QUE HEMOS CREADO
-app.use('/', indexRouter);
+app.use('/home', indexRouter);
 app.use('/users', usersRouter);
 app.use('/catalogos',catalogosRouter);
 app.use('/movimientos',movimientosRouter);

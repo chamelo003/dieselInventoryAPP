@@ -10,8 +10,15 @@ var router = express.Router();
 
 // URI DEL LOGIN PARA AUTENTICARSE Y PROCEDER AL SISTEMA DE ORDENES.
 router.get('/', function(req, res, next) {
+  
   res.render('./LoginViews/Login.ejs',{title:'Log in!',message:''});
 });
+
+router.post('/login',(req,res,next)=>{
+  console.log(req.body);
+  req.session.userdata = req.body
+  res.redirect('/home/')
+})
 
 // URI DEL LOGIN PARA INGRESAR A LA GESTION DE USUARIOS.
 router.get('/register',(req,res,next)=>{

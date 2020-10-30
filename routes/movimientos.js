@@ -17,7 +17,8 @@ var router = express.Router();
 // Ruta para ver los días creados y cerrados 16/sept/2020
 // Link en la vista: ('/movimientos/cierres')
 router.get('/cierres',(req,res,next)=>{
-    res.send('lista de dias abiertos y cerrados');
+    //res.send('Listado de cierres')
+    res.render('./OrdenesViews/movimientosViews/Cierres',{title:'Cierres'});
 });
 //#endregion
 
@@ -26,16 +27,8 @@ router.get('/cierres',(req,res,next)=>{
 // Ruta para ver lista de entradas 16/sept/2020
 // Link en la vista: ('/movimientos/entradas')
 router.get('/entradas',(req,res,next)=>{
-    res.send('lista de entradas');
-});
-//#endregion
-
-//#region PRECIOS
-// Acciones para PRECIOS VIGENTES 16/sept/2020
-// Ruta para ver los listados de precios 16/sept/2020
-// Link en la vista: ('/movimientos/precios')
-router.get('/precios',(req,res,next)=>{
-    res.send('lista de precios');
+    //res.send('lista de entradas');
+    res.render('./OrdenesViews/movimientosViews/Entradas',{title:'Entradas'})
 });
 //#endregion
 
@@ -44,7 +37,8 @@ router.get('/precios',(req,res,next)=>{
 // Ruta para ver listado de ordenes 16/sept/2020
 // Link en la vista: ('/movimientos/cierres')
 router.get('/ordenes',(req,res,next)=>{
-    res.send('lista de ordenes');
+    //res.send('lista de ordenes');
+    res.render('./OrdenesViews/movimientosViews/Ordenes',{title:'Ordenes'});
 });
 //#endregion
 

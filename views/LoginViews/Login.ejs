@@ -19,7 +19,7 @@
           <% if(message) { %>
             <p><%=message%></p>
           <% } %>  
-          <form>
+          <form action="/users/login" method="POST">
             <div class="input-field">
               <input id="username" type="text" class="validate" placeholder="USUARIO" required="True">
               <!--label for="username">Usuario</label-->
