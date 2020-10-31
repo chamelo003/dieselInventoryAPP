@@ -26,6 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Cueston para manejo de sesiones :v (CHAMBAL PERRO) 12/OCT/2020
 var session = require('express-session');
+const router = require('./routes/index');
 var MySQLStore = require('express-mysql-session')(session);
 var options = {};
 
@@ -53,6 +54,9 @@ app.use('/catalogos',catalogosRouter);
 app.use('/movimientos',movimientosRouter);
 app.use('/reportes',reportesRouter);
 
+app.get('/',(req,res,next)=>{
+  res.redirect('/users/');
+});
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
