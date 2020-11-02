@@ -20,21 +20,23 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+//app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
 // Cueston para manejo de sesiones :v (CHAMBAL PERRO) 12/OCT/2020
 var session = require('express-session');
 const router = require('./routes/index');
-var MySQLStore = require('express-mysql-session')(session);
-var options = {};
+//var MySQLStore = require('express-mysql-session')(session);
+//var options = {};
 
-app.use(session({
+/*app.use(session({
   secret:'Ez1S3kreTH0ktuM1r@daiLaMIA_xD',
   resave: false,
-  saveUninitialized: false
-}));
+  saveUninitialized: true,
+  cookie: {secure:true}
+}));*/
+
 
 /*/ MIDDLEWARES 30/10/2020
 const flash = require('connect-flash');
