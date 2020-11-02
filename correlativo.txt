@@ -1,0 +1,9 @@
+CORRELATIVO: 
+@Id int OUT
+AS BEGIN
+	IF(not exists(select id from tabla))
+set @id=1
+ELSE BEGIN
+SET @ID=(SELECT MAX(ID)+1 FROM VENTA)
+END
+END
