@@ -7,3 +7,18 @@ ELSE BEGIN
 SET @ID=(SELECT MAX(ID)+1 FROM VENTA)
 END
 END
+
+--CORRELATIVOOOOOOO
+Declare @Id int
+set @Id = (select max(IdCategoría) from Categorias) 
+if @Id = 0 
+begin
+	set @Id = 1
+end
+else
+	begin
+		set @id = @id + 1
+	end
+print @Id
+
+
