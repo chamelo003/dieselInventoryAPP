@@ -5,9 +5,10 @@
  *  Reporte por vehiculo, reporte por rango de fechas, Ordenes por      *
  *  cobrar, Reportes por tipo de salida)                                *                                                       *
  ***********************************************************************/
-var express = require('express');
-var router = express.Router();
-
+//var express = require('express');
+//var router = express.Router();
+const { Router } = require('express');
+const router = Router();
 //meta las rutas aqui lince
 
 //#region REPORTE DIARIO

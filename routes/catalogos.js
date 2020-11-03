@@ -7,8 +7,10 @@
 *****************************************************/
 // Requerimos las librerias necesarias para que funcione xD
 
-var express = require('express');
-var catalogosRouter = express.Router();
+//var express = require('express');
+//var catalogosRouter = express.Router();
+const { Router } = require('express');
+const router = Router();
 var catalogosController = require('../controllers/catalogosController');
  
 //meta las rutas aqui lince
@@ -17,7 +19,7 @@ var catalogosController = require('../controllers/catalogosController');
 // Acciones para los que autorizan 15/Sept/2020
 // Ruta para ver listado de personas que autorizan 15/Sept/2020
 // Link en la vista: ('/catalogos/autorizan')
-catalogosRouter.get('/autorizan',(req,res,next)=>{
+router.get('/autorizan',(req,res,next)=>{
     //res.send('aqui vas a ver despues la lista de los que autorizan xD');
     res.render('./OrdenesViews/catalogosViews/Autoriza',{title:'Autorizadores',data:'data de ejemplo autoriza'})
 });
@@ -27,7 +29,7 @@ catalogosRouter.get('/autorizan',(req,res,next)=>{
 // Acciones para transportistas 16/Sept/2020
 // Ruta para ver el listado de los transportistas 16/SEPT/2020
 // Link en la vista: ('/catalogos/trans')
-catalogosRouter.get('/trans',(req,res,next)=>{
+router.get('/trans',(req,res,next)=>{
     //res.send('lista de los transportistas');
     res.render('./OrdenesViews/catalogosViews/Transportista',{title:'Transportistas',data:'data de ejemplo transportistas :v'})
 });
@@ -37,7 +39,7 @@ catalogosRouter.get('/trans',(req,res,next)=>{
 // Acciones para morotistas 16/sept/2020
 // Ruta para ver el listado de los motoristas 16/sept/2020
 // Link en la vista: ('/catalogos/mot')
-catalogosRouter.get('/mot',(req,res,next)=>{
+router.get('/mot',(req,res,next)=>{
     //res.send('lista de los motoristas');
     res.render('./OrdenesViews/catalogosViews/Motorista',{title:'Motoristas',data:'data de ejemplo motorista :v'})
 });
@@ -47,7 +49,7 @@ catalogosRouter.get('/mot',(req,res,next)=>{
 // Acciones para los tipos de vehiculos 16/sept/2020
 // Ruta para ver los tipos de vehiculos 16/sept/2020
 // Link en la vista: ('/catalogos/tv')
-catalogosRouter.get('/tv',(req,res,next)=>{
+router.get('/tv',(req,res,next)=>{
     //res.send('lista de tipos de vehiculos');
     res.render('./OrdenesViews/catalogosViews/TiposVehiculos',{title:'Tipos de vehiculos'});
 });
@@ -57,7 +59,7 @@ catalogosRouter.get('/tv',(req,res,next)=>{
 // Acciones para vehiculos 16/sept/2020
 // Ruta para ver los vehiculos 16/sept/2020
 // Link en la vista: ('/catalogos/veh')
-catalogosRouter.get('/veh',(req,res,next)=>{
+router.get('/veh',(req,res,next)=>{
     //res.send('lista de vehiculos');
     res.render('./OrdenesViews/catalogosViews/Vehiculos',{title:'Vehiculos'});
 });
@@ -67,7 +69,7 @@ catalogosRouter.get('/veh',(req,res,next)=>{
 // Acciones para las Ubicaciones 16/sept/2020
 // Ruta para ver las ubicaciones 16/sept/2020
 // Link en la vista: ('/catalogos/loc')
-catalogosRouter.get('/loc',(req,res,next)=>{
+router.get('/loc',(req,res,next)=>{
     //res.send('lista de tipos de ubicaciones');
     res.render('./OrdenesViews/catalogosViews/Ubicaciones',{title:'Ubicaciones'});
 });
@@ -77,7 +79,7 @@ catalogosRouter.get('/loc',(req,res,next)=>{
 // Acciones para las bombas de combustible 16/sept/2020
 // Ruta para ver listado de bombas 16/sept/2020
 // Link en la vista: ('/catalogos/bomb')
-catalogosRouter.get('/bomb',(req,res,next)=>{
+router.get('/bomb',(req,res,next)=>{
     //res.send('lista de bombas');
     res.render('./OrdenesViews/catalogosViews/Bombas',{title:'Bombas'});
 });
@@ -87,7 +89,7 @@ catalogosRouter.get('/bomb',(req,res,next)=>{
 // Acciones para los BOMBEROS 16/sept/2020
 // Ruta para ver lsitado de bomberos 16/sept/2020
 // Link en la vista: ('/catalogos/bombs')
-catalogosRouter.get('/bombs',(req,res,next)=>{
+router.get('/bombs',(req,res,next)=>{
     //res.send('lista de bomberos');
     res.render('./OrdenesViews/catalogosViews/Bomberos',{title:'Bomberos'});
 });
@@ -97,10 +99,10 @@ catalogosRouter.get('/bombs',(req,res,next)=>{
 // Acciones para los tipos de salidas 16/sept/2020
 // Ruta para ver lista de tipos de salidas 16/sept/2020
 // Link en la vista: ('/catalogos/tv')
-catalogosRouter.get('/tps',(req,res,next)=>{
+router.get('/tps',(req,res,next)=>{
     //res.send('lista de tipos de salida');
     res.render('./OrdenesViews/catalogosViews/TiposSalidas',{title:'Tipos de salidas'});
 });
 //#endregion
 
-module.exports = catalogosRouter;
+module.exports = router;

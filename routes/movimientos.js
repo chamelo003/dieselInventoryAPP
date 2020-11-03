@@ -7,9 +7,10 @@
  *  todos los links de las rutas aquí encontradas                       *
  *  se encuentran en: /views/Layouts/Login/Header.ejs
  ***********************************************************************/
-var express = require('express');
-var router = express.Router();
-
+//var express = require('express');
+//var router = express.Router();
+const { Router } = require('express');
+const router = Router();
 //meta las rutas aqui lince
 
 //#region CIERRES

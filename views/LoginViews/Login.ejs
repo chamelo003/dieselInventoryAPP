@@ -1,42 +1,50 @@
-<html>
-<% include ../Layouts/Login/Header.ejs %>
-  <div class="container">
-  <div class="row">
-    <div class="col s8 offset-s2">
-      <div class="card card-login">
-        <div class="card-login-splash">
-          <div class="wrapper">
-            <h3>Acceso</h3>
-            <!--a class="btn" href="#!">Sign In</a-->
-            <% if(!message) { %>
-              <a class="btn" href="/users/register">Registro de usuarios</a>
-            <% } %>
-          </div>
-          <img src="//cdn.shopify.com/s/files/1/1775/8583/t/1/assets/geometric-cave.jpg?v=13127282243134125143" alt="">
-        </div>
-        <div class="card-content">
-          <span class="card-title">Inicio de sesión</span>
-          <% if(message) { %>
-            <p><%=message%></p>
-          <% } %>  
-          <form action="/users/login" method="POST">
-            <div class="input-field">
-              <input id="username" type="text" class="validate" placeholder="USUARIO" required="True">
-              <!--label for="username">Usuario</label-->
+<!DOCTYPE html>
+<html lang="es-ES">
+  <%include ../Layouts/Login/Header.ejs %>
+<!-- Material form login -->
+<div class="container-fluid">
+  <div class="row justify-content-center ">
+    <div class="col-sm-4 align-middle">
+      <div class="card">
+        <h5 class="card-header info-color white-text text-center py-4">
+          <%if(!message){%><strong>Inicia sesión</strong><%}%>
+          <% if(message) {%>  
+            <strong>ACCESO ADMINISTRADOR</strong>
+            <p><%= message %></p>
+          <%}%>
+        </h5>
+        <!--Card content-->
+        <div class="card-body px-lg-5 pt-0">
+          <!-- Form si no obtengo mensaje del server la action del form será /users/login para loggearse como simple mortal
+          <--- Si obtengo mensaje del server la action del form cambia a /users/signup para loggearse como admin y gestionar usuarios -->
+          <%if(!message){%><form class="text-center" style="color: #757575;" action="/users/login" method="POST"><%}%>
+          <%if(message){%><form class="text-center" style="color: #757575;" action="/users/signup" method="POST"><%}%>
+            <!-- Email -->
+            <div class="md-form">
+              <input type="text" id="usuario" name="usuario" class="form-control">
+              <label for="usuario">Usuario</label>
             </div>
-            <div class="input-field">
-              <input id="password" type="password" class="validate" placeholder="CONTRASEÑA" required="True">
-              <!--label for="password">Contraseña</label-->
+    
+            <!-- Password -->
+            <div class="md-form">
+              <input type="password" id="contra" name="contra" class="form-control">
+              <label for="contra">Contraseña</label>
             </div>
-            <br><br>
-            <div>
-              <input class="btn right" type="submit" value="Ingresar">
-            </div>
+    
+            <!-- Sign in button -->            
+            <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Entrar</button>
+    
+            <!-- Register Si no obtengo un mensaje desde el servidor en la ruta pinto este zelda :v-->
+              <%if (!message){ %><a href="/users/signup">Registro de usuarios</a><%}%>
+            </p>
           </form>
+          <!-- Form -->
         </div>
       </div>
     </div>
   </div>
 </div>
-<% include ../Layouts/Login/Footer.ejs %>
+<!-- Material form login -->
+<%include ../Layouts/Ordenes/Footer.ejs %>
+<%include ../Layouts/Login/Footer.ejs %>
 </html>
