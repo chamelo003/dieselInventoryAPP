@@ -10,6 +10,9 @@
 
 const { Router } = require('express');
 const router = Router();
+// Traigo mi conexion a la DB
+const pool = require('../DAO/conn_string');
+
 
 // URI DEL LOGIN PARA AUTENTICARSE Y PROCEDER AL SISTEMA DE ORDENES.
 router.get('/login', function(req, res, next) {

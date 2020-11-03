@@ -6,7 +6,8 @@
  * Luego requerimos el conector de mysql y le   *
  * pasamos los parametros de la cadena.         *
  ***********************************************/
-
+// Requerimos el conector
+const mysql = require('mysql');
 // Datos del server mysql
 let dbString = {
     host: 'localhost',
@@ -16,14 +17,33 @@ let dbString = {
     database: 'Diesel'
 }
 var async = require('async'); 
-// Requerimos el conector
-const mysql = require('mysql');
+const { promisify } = require('util');
 
 // Abrimos la conexion
-conn = mysql.createConnection(dbString);
+const pool = mysql.createPool(dbString);
 
 // Verificamos que la conexion funcione, de no ser así lanzamos el error.
-conn.connect(err=>{
+
+pool.getConnection((err,connection)=>{
+    if(err){
+        if(err.code === 'PROTOCOL_CONNECTION_LOST'){
+            console.error('DATABASE CONNECTION WAS CLOSED');
+        }
+        if(err.code === 'ERR_CONN_COUNT_ERROR'){
+            console.error('DATABASE HAS TO MANY CONNECTIONS');
+        }
+        if(err.code === 'ECONNREFUSED'){
+            console.error('DATABASE CONNECTION WAS REFUSED');
+        }
+    }
+
+    if(connection) connection.release;
+    console.log('Connected to DB!')
+    return;
+})
+/*conn.getConnection(err=>{
     // Operador ternario si hay error lanza el codigo de error sino lanza mensaje de todo bien todo correcto
     return (err) ? console.log('Error al conectar con la DB: '+err.stack) : console.log('Connected to DB!');
-});
+});*/
+promisify(pool.query);
+module.exports = pool;
