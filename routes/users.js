@@ -37,4 +37,9 @@ router.post('/signup',(req,res,next)=>{
   res.send('si funca signup xD');
 });
 
+router.get('/logout',(req,res,next)=>{
+  // kill session
+  res.redirect('/');
+})
+
 module.exports = router;
