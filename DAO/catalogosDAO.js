@@ -7,13 +7,6 @@
 *3. Ordenes                                             *  
 ********************************************************/
 
-/**
- * En modo dev declaro una variable de idubicacion para no
- * loggearme y poder agregar consultar eliminar y modificar
- * registros
- */
-const idub = 2;
-
 const catalogosDAO = require('./conn_string');
 
 // Obtner los registros de los encargados de autorizar las ordenes 22/Sept/2020

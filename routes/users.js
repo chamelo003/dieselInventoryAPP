@@ -34,7 +34,8 @@ router.get('/signup',(req,res,next)=>{
 //URI PARA PROCESAR LA DATA DEL FORM DE REGISTRO DE USUARIOS
 router.post('/signup',(req,res,next)=>{
   console.log(req.body);
-  res.send('si funca signup xD');
+  //res.send('si funca signup xD');
+  res.render('./GestionUsuariosViews/users.ejs');
 });
 
 router.get('/logout',(req,res,next)=>{

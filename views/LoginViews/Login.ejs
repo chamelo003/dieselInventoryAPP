@@ -21,13 +21,13 @@
           <%if(message){%><form class="text-center" style="color: #757575;" action="/users/signup" method="POST"><%}%>
             <!-- Email -->
             <div class="md-form">
-              <input type="text" id="usuario" name="usuario" class="form-control">
+              <input type="text" id="usuario" name="usuario" required class="form-control" autocomplete="off">
               <label for="usuario">Usuario</label>
             </div>
     
             <!-- Password -->
             <div class="md-form">
-              <input type="password" id="contra" name="contra" class="form-control">
+              <input type="password" id="contra" name="contra" required class="form-control">
               <label for="contra">Contraseña</label>
             </div>
     

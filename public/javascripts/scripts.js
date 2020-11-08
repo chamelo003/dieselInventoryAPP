@@ -36,7 +36,9 @@ $(document).ready( function (){
             console.log("nombreItem:"+nombre);
             iditem = $(this).prev('td').text();
             console.log(iditem)
-            $('#idMot').val(iditem);
+            $('#idMot').val(nombre);
+            $('#motid').val(iditem);
+            $('#modalExtData').modal('hide');
         });   
     })
     $('#tv').click(function(){
@@ -48,7 +50,9 @@ $(document).ready( function (){
             console.log("nombreItem:"+nombre);
             iditem = $(this).prev('td').text();
             console.log(iditem)
-            $('#tv').val(iditem);
+            $('#tv').val(nombre);
+            $('#idtv').val(iditem);
+            $('#modalExtData').modal('hide');
         });  
     });
     $('#marca').click(function(){
@@ -60,18 +64,11 @@ $(document).ready( function (){
             console.log("nombreItem:"+nombre);
             iditem = $(this).prev('td').text();
             console.log(iditem)
-            $('#marca').val(iditem);
+            $('#marca').val(nombre);
+            $('#idmarca').val(iditem);
+            $('#modalExtData').modal('hide');
         });
     });
-    //tdselector();
-    // funcion para elegir los id si se seleccionan los nombres de motoristas, o marcas, o tipos de vehiculos
-    // y colocarlos en el input correspondiente en el dom los tags td tienen una clase llamada tdselector
-        $('.tdselector').dblclick(function (){
-            nombre = $(this).text();
-            console.log("nombreItem:"+nombre);
-            iditem = $(this).prev('td').text();
-            console.log(iditem)
-        });
 //#endregion
 $('#fecha').change(function(){
     alert($(this).val());

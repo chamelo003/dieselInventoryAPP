@@ -63,6 +63,11 @@ router.get('/veh',(req,res,next)=>{
     //res.send('lista de vehiculos');
     res.render('./OrdenesViews/catalogosViews/Vehiculos',{title:'Vehiculos'});
 });
+// Al registrar un vehiculo (link en form /catalogos/veh mehtod post)
+router.post('/veh',(req,res,next)=>{
+    vehiculoData = req.body;
+    res.send(req.body);
+})
 //#endregion
 
 //#region UBICACIONES
