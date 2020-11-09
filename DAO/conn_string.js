@@ -29,7 +29,7 @@ pool.getConnection((err,connection)=>{
         if(err.code === 'PROTOCOL_CONNECTION_LOST'){
             console.error('DATABASE CONNECTION WAS CLOSED');
         }
-        if(err.code === 'ERR_CONN_COUNT_ERROR'){
+        if(err.code === 'ER_CONN_COUNT_ERROR'){
             console.error('DATABASE HAS TO MANY CONNECTIONS');
         }
         if(err.code === 'ECONNREFUSED'){
@@ -46,4 +46,4 @@ pool.getConnection((err,connection)=>{
     return (err) ? console.log('Error al conectar con la DB: '+err.stack) : console.log('Connected to DB!');
 });*/
 promisify(pool.query);
-module.exports = pool;
+module.exports = {pool,dbString};

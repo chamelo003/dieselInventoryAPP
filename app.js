@@ -4,15 +4,19 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
-
+const passport = require('passport');
+const MySQLStore = require('express-mysql-session')(session);
+const { dbString } = require('./DAO/conn_string');
 var app = express();
+// requiero la libreria que escribi para la autenticacion y creacion de usuarios
+require('./lib/passport');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // MIDDLEWARES
-//app.use(logger('dev'));
+app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -20,8 +24,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret:'thisisaMFsecret',
   resave:false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  store: new MySQLStore(dbString)
 }));
+
+//VARIABLES GLOBALES
+app.use((req, res, next) => {
+  //app.locals.message = req.flash('message');
+  //app.locals.success = req.flash('success');
+  app.locals.user = req.user;
+  next();
+});
 
 // CREAMOS VARIABLES PARA ALMACENAR LAS RUTAS CREADAS Y PODER USARLAS
 var indexRouter = require('./routes/index');

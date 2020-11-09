@@ -7,15 +7,13 @@
  *  todos los links de las rutas aquí encontradas                       *
  *  se encuentran en: /views/Layouts/Login/Header.ejs
  ***********************************************************************/
-//var express = require('express');
-//var router = express.Router();
 const { Router } = require('express');
 const router = Router();
 //meta las rutas aqui lince
 
 //#region CIERRES
-// Acciones para APERTURA Y CIERRE DE DIAS 16/sept/2020
-// Ruta para ver los días creados y cerrados 16/sept/2020
+// Acciones para APERTURA Y CIERRE DE DIAS 
+// Ruta para ver los días creados y cerrados 
 // Link en la vista: ('/movimientos/cierres')
 router.get('/cierres',(req,res,next)=>{
     //res.send('Listado de cierres')
@@ -24,8 +22,8 @@ router.get('/cierres',(req,res,next)=>{
 //#endregion
 
 //#region ENTRADAS
-// Acciones para ENTRADAS 16/sept/2020
-// Ruta para ver lista de entradas 16/sept/2020
+// Acciones para ENTRADAS 
+// Ruta para ver lista de entradas 
 // Link en la vista: ('/movimientos/entradas')
 router.get('/entradas',(req,res,next)=>{
     //res.send('lista de entradas');
@@ -34,8 +32,8 @@ router.get('/entradas',(req,res,next)=>{
 //#endregion
 
 //#region ORDENES
-// Acciones para ORDENES 16/sept/2020
-// Ruta para ver listado de ordenes 16/sept/2020
+// Acciones para ORDENES 
+// Ruta para ver listado de ordenes 
 // Link en la vista: ('/movimientos/cierres')
 router.get('/ordenes',(req,res,next)=>{
     //res.send('lista de ordenes');

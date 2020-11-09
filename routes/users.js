@@ -4,15 +4,15 @@
  * CREATED BY: CHAMELO ON 16/SEPT/2020            *
  **************************************************/
 
- // LLAMAMOS LAS LIBRERIAS REQUERIDAS
-//var express = require('express');
-//var router = express.Router();
 
 const { Router } = require('express');
 const router = Router();
 // Traigo mi conexion a la DB
 const pool = require('../DAO/conn_string');
-
+// instancio passport para poder loggear usuarios
+const passport = require('passport');
+// cjalo mi guachi de sesiones xD
+const { isLoggedIn } = require('../lib/auth');
 
 // URI DEL LOGIN PARA AUTENTICARSE Y PROCEDER AL SISTEMA DE ORDENES.
 router.get('/login', function(req, res, next) {
@@ -40,7 +40,8 @@ router.post('/signup',(req,res,next)=>{
 
 router.get('/logout',(req,res,next)=>{
   // kill session
+  req.logOut();
   res.redirect('/');
-})
+});
 
 module.exports = router;

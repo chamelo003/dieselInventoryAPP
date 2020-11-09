@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `Diesel`.`Usuarios` (
     ON DELETE RESTRICT
     ON UPDATE RESTRICT)
 ENGINE = InnoDB
-AUTO_INCREMENT = 4
+AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -87,20 +87,6 @@ CREATE TABLE IF NOT EXISTS `Diesel`.`Autorizan` (
     FOREIGN KEY (`IdUbicacion`)
     REFERENCES `Diesel`.`Ubicaciones` (`IdUbicacion`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `Diesel`.`Empresas`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Diesel`.`Empresas` (
-  `IdEmpresa` INT NOT NULL AUTO_INCREMENT,
-  `Empresa` VARCHAR(30) NOT NULL,
-  PRIMARY KEY (`IdEmpresa`),
-  UNIQUE INDEX `Empresa` (`Empresa` ASC) VISIBLE)
-ENGINE = InnoDB
 AUTO_INCREMENT = 4
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
@@ -112,14 +98,9 @@ COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE IF NOT EXISTS `Diesel`.`Bombas` (
   `IdBomba` INT NOT NULL AUTO_INCREMENT,
   `Bomba` VARCHAR(25) NOT NULL,
-  `IdEmpresa` INT NOT NULL,
   `IdUbicacion` INT NOT NULL,
   PRIMARY KEY (`IdBomba`),
-  INDEX `IdEmpresa` (`IdEmpresa` ASC) VISIBLE,
   INDEX `IdUbicacion` (`IdUbicacion` ASC) VISIBLE,
-  CONSTRAINT `Bombas_ibfk_1`
-    FOREIGN KEY (`IdEmpresa`)
-    REFERENCES `Diesel`.`Empresas` (`IdEmpresa`),
   CONSTRAINT `Bombas_ibfk_2`
     FOREIGN KEY (`IdUbicacion`)
     REFERENCES `Diesel`.`Ubicaciones` (`IdUbicacion`))
@@ -155,8 +136,8 @@ COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE IF NOT EXISTS `Diesel`.`Cierres` (
   `Fecha` DATE NOT NULL,
   `IdUbicacion` INT NOT NULL,
-  `CantInicial` FLOAT NOT NULL,
-  `CantFinal` FLOAT NOT NULL,
+  `CantInicial` FLOAT NOT NULL DEFAULT '0',
+  `CantFinal` FLOAT NOT NULL DEFAULT '0',
   `Observacion` TEXT NULL DEFAULT NULL,
   `Cerrado` TINYINT(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`Fecha`, `IdUbicacion`),
@@ -170,16 +151,13 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `Diesel`.`Transportistas`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Diesel`.`Transportistas` (
-  `IdInterno` INT NOT NULL AUTO_INCREMENT,
   `RTN` CHAR(14) NOT NULL,
   `Nombre` VARCHAR(25) NOT NULL,
   `Apellido` VARCHAR(25) NOT NULL,
   `Observacion` TEXT NULL DEFAULT NULL,
   PRIMARY KEY (`RTN`),
-  UNIQUE INDEX `IdInterno_UNIQUE` (`IdInterno` ASC) VISIBLE,
   INDEX `Nombre` (`Nombre` ASC, `Apellido` ASC) VISIBLE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 4
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -188,14 +166,12 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `Diesel`.`Motoristas`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Diesel`.`Motoristas` (
-  `IdInterno` INT NOT NULL AUTO_INCREMENT,
   `IdMotorista` CHAR(13) NOT NULL,
   `Nombre` VARCHAR(25) NOT NULL,
   `Apellido` VARCHAR(25) NOT NULL,
   `Observacion` TEXT NULL DEFAULT NULL,
   `RTN_TRANSPORTISTA` CHAR(14) NOT NULL,
   PRIMARY KEY (`IdMotorista`),
-  UNIQUE INDEX `IdInterno_UNIQUE` (`IdInterno` ASC) VISIBLE,
   INDEX `RTN_TRANSPORTISTA` (`RTN_TRANSPORTISTA` ASC) VISIBLE,
   INDEX `IdxMotoristas_Transportistas` (`IdMotorista` ASC, `RTN_TRANSPORTISTA` ASC) VISIBLE,
   CONSTRAINT `FK_Motoristas_Transportistas`
@@ -204,7 +180,6 @@ CREATE TABLE IF NOT EXISTS `Diesel`.`Motoristas` (
     ON DELETE RESTRICT
     ON UPDATE RESTRICT)
 ENGINE = InnoDB
-AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -215,13 +190,12 @@ COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE IF NOT EXISTS `Diesel`.`Entradas` (
   `IdEntrada` INT NOT NULL,
   `IdUbicacion` INT NOT NULL,
+  `Fecha` DATE NULL DEFAULT NULL,
   `IdMotorista` CHAR(13) NOT NULL,
   `Cantidad` FLOAT NOT NULL,
   `Observaciones` TEXT NOT NULL,
   `HoraLlegada` TIME NOT NULL,
-  `Anulada` TINYINT(1) NOT NULL DEFAULT '0',
   `Existencia` FLOAT NOT NULL,
-  `Fecha` DATE NULL DEFAULT NULL,
   PRIMARY KEY (`IdEntrada`, `IdUbicacion`),
   INDEX `IdMotorista` (`IdMotorista` ASC) VISIBLE,
   INDEX `FK_ENTRADAS_CIERRES` (`Fecha` ASC) VISIBLE,
@@ -248,34 +222,6 @@ CREATE TABLE IF NOT EXISTS `Diesel`.`Marcas` (
   UNIQUE INDEX `Marca` (`Marca` ASC) VISIBLE)
 ENGINE = InnoDB
 AUTO_INCREMENT = 32
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `Diesel`.`PreciosVigentes`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Diesel`.`PreciosVigentes` (
-  `idPrecioVigente` INT NOT NULL AUTO_INCREMENT,
-  `Precio` FLOAT NOT NULL,
-  `fecha` DATE NOT NULL,
-  PRIMARY KEY (`idPrecioVigente`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 2
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `Diesel`.`Temporadas`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Diesel`.`Temporadas` (
-  `IdTemporada` INT NOT NULL AUTO_INCREMENT,
-  `Temporada` VARCHAR(20) NOT NULL,
-  PRIMARY KEY (`IdTemporada`),
-  UNIQUE INDEX `Temporada` (`Temporada` ASC) VISIBLE)
-ENGINE = InnoDB
-AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -311,14 +257,13 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `Diesel`.`Vehiculos`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Diesel`.`Vehiculos` (
-  `Placa` CHAR(7) NOT NULL,
+  `Placa` VARCHAR(7) NOT NULL,
   `IdMarca` INT NOT NULL,
   `IdTipo` INT NOT NULL,
   `Observacion` TEXT NOT NULL,
   `IdMotorista` CHAR(13) NOT NULL,
-  `IdInterno` INT NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`Placa`),
-  UNIQUE INDEX `IdInterno_UNIQUE` (`IdInterno` ASC) VISIBLE,
+  UNIQUE INDEX `Placa_UNIQUE` (`Placa` ASC) VISIBLE,
   INDEX `IdMotorista` (`IdMotorista` ASC) VISIBLE,
   INDEX `IdMarca` (`IdMarca` ASC) VISIBLE,
   INDEX `IdTipo` (`IdTipo` ASC) VISIBLE,
@@ -335,7 +280,6 @@ CREATE TABLE IF NOT EXISTS `Diesel`.`Vehiculos` (
     FOREIGN KEY (`IdTipo`)
     REFERENCES `Diesel`.`TiposVehiculos` (`IdTipo`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 5
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -365,33 +309,25 @@ CREATE TABLE IF NOT EXISTS `Diesel`.`Ordenes` (
   `CxC` TINYINT(1) NOT NULL DEFAULT '0',
   `Existencia` FLOAT NOT NULL,
   `Reimpresion` TINYINT(1) NOT NULL DEFAULT '0',
-  `IdPrecio` INT NOT NULL,
-  `GalonesAnulados` FLOAT NOT NULL DEFAULT '0.0',
+  `GalonesAnulados` FLOAT NOT NULL DEFAULT '0',
   PRIMARY KEY (`IdOrden`, `Fecha`, `IdUbicacion`),
   INDEX `IdTipoSalida` (`IdTipoSalida` ASC) VISIBLE,
-  INDEX `IdTemporada` (`IdTemporada` ASC) VISIBLE,
   INDEX `Fecha` (`Fecha` ASC) VISIBLE,
   INDEX `IdBomba` (`IdBomba` ASC) VISIBLE,
   INDEX `Placa` (`Placa` ASC) VISIBLE,
   INDEX `IdAutoriza` (`IdAutoriza` ASC) VISIBLE,
-  INDEX `fk_Ordenes_1_idx` (`IdPrecio` ASC) VISIBLE,
   INDEX `FK_Ordenes_Bomberos_idx` (`IdBombero` ASC) VISIBLE,
   INDEX `FK_Ordenes_Ubicacion_idx` (`IdUbicacion` ASC) VISIBLE,
   CONSTRAINT `FK_Ordenes_Autorizan`
     FOREIGN KEY (`IdAutoriza`)
-    REFERENCES `Diesel`.`Autorizan` (`IdAutoriza`),
+    REFERENCES `Diesel`.`Autorizan` (`IdAutoriza`)
+    ON UPDATE RESTRICT,
   CONSTRAINT `FK_Ordenes_Bomberos`
     FOREIGN KEY (`IdBombero`)
     REFERENCES `Diesel`.`Bomberos` (`IdBombero`),
   CONSTRAINT `FK_Ordenes_Cierres`
     FOREIGN KEY (`Fecha`)
     REFERENCES `Diesel`.`Cierres` (`Fecha`),
-  CONSTRAINT `FK_Ordenes_Precios`
-    FOREIGN KEY (`IdPrecio`)
-    REFERENCES `Diesel`.`PreciosVigentes` (`idPrecioVigente`),
-  CONSTRAINT `FK_Ordenes_Temporadas`
-    FOREIGN KEY (`IdTemporada`)
-    REFERENCES `Diesel`.`Temporadas` (`IdTemporada`),
   CONSTRAINT `FK_Ordenes_TiposSalidas`
     FOREIGN KEY (`IdTipoSalida`)
     REFERENCES `Diesel`.`TiposSalidas` (`IdTipoSalida`),
@@ -416,14 +352,29 @@ USE `Diesel` ;
 CREATE TABLE IF NOT EXISTS `Diesel`.`V_AuditLogs` (`IdLog` INT, `Usuario` INT, `Fecha y Hora de Acción` INT, `Observacion` INT);
 
 -- -----------------------------------------------------
--- Placeholder table for view `Diesel`.`V_Ordenes`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Diesel`.`V_Ordenes` (`IdOrden` INT, `LugarUbicacion` INT, `Fecha` INT, `AUTORIZA` INT, `Bomba` INT, `Placa` INT, `Temporada` INT, `Boleta` INT, `Contenedor` INT, `Chasis` INT, `Planta` INT, `TipoSalida` INT, `BOMBERO` INT, `Galones` INT, `Descripcion` INT, `Kilometraje` INT, `Impresa` INT, `Anulada` INT, `CxC` INT, `Existencia` INT, `Reimpresion` INT);
-
--- -----------------------------------------------------
 -- Placeholder table for view `Diesel`.`V_Vehiculos`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Diesel`.`V_Vehiculos` (`PLACA` INT, `MARCA` INT, `TIPO DE VEHICULO` INT, `MOTORISTA` INT, `TRANSPORTISTA` INT, `Observacion` INT);
+
+-- -----------------------------------------------------
+-- procedure GetCorrelativo
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `Diesel`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetCorrelativo`(IN ubi int, OUT id int)
+BEGIN
+DECLARE idOrd INT;
+SELECT max(IdOrden) INTO idOrd FROM Ordenes WHERE IdUbicacion = ubi;
+IF idOrd = 0 THEN
+	SET idOrd = 1;
+ELSE
+	set idOrd = idOrd + 1;
+END IF;
+SET id = idOrd;
+END$$
+
+DELIMITER ;
 
 -- -----------------------------------------------------
 -- procedure SP_AgAutoriza
@@ -534,19 +485,6 @@ END$$
 DELIMITER ;
 
 -- -----------------------------------------------------
--- procedure SP_AgPrecioVigente
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `Diesel`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_AgPrecioVigente`(IN P FLOAT, IN F DATE)
-BEGIN
-	INSERT INTO PreciosVigentes (Precio, Fecha) VALUES (P,F);
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
 -- procedure SP_AgTemporada
 -- -----------------------------------------------------
 
@@ -617,9 +555,9 @@ DELIMITER ;
 
 DELIMITER $$
 USE `Diesel`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_AgUsuario`(IN Nombre varchar(50), IN Username varchar(25), IN Pass varchar(256), IN IdUbic INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_AgUsuario`(IN Nombre VARCHAR(50), IN Username VARCHAR(25), IN Pass VARCHAR(256), IN IdUbic INT, Permi char(3))
 BEGIN
-	Insert into Usuarios (Nombre,Username,Contrasena,IdUbicacion) Values (Nombre,Username,Pass,IdUbic);
+	INSERT INTO Usuarios (Nombre,Username,Contrasena,IdUbicacion,Permisos) Values (Nombre,Username,Pass,IdUbic,Permi);
 END$$
 
 DELIMITER ;
@@ -727,14 +665,14 @@ DELIMITER ;
 
 DELIMITER $$
 USE `Diesel`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_ModUsuario`(IN Nombre varchar(50), IN Username varchar(25), IN Pass varchar(256), IN IdUbic INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_ModUsuario`(IN Id INT, IN Nom VARCHAR(50), IN Uname VARCHAR(25), IN Pass VARCHAR(256), IN IdUbic INT)
 BEGIN
 	UPDATE Usuarios SET
-    Nombre = Nombre,
-    Username = Username,
+    Nombre = Nom,
+    Username = Uname,
     Contrasena = Pass,
     IdUbicacion = IdUbic
-    WHERE IdUsuario = IdUsuario;
+    WHERE IdUsuario = Id;
 END$$
 
 DELIMITER ;
@@ -759,18 +697,26 @@ END$$
 DELIMITER ;
 
 -- -----------------------------------------------------
+-- procedure SP_VerCorrelativo
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `Diesel`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_VerCorrelativo`(OUT cor INT)
+BEGIN
+	DECLARE correlativo INT;
+    
+    Select last IdAutoriza into correlativo;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
 -- View `Diesel`.`V_AuditLogs`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `Diesel`.`V_AuditLogs`;
 USE `Diesel`;
 CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `Diesel`.`V_AuditLogs` AS select `Diesel`.`AuditLogs`.`IdLog` AS `IdLog`,`Diesel`.`Usuarios`.`Nombre` AS `Usuario`,`Diesel`.`AuditLogs`.`FechaHora` AS `Fecha y Hora de Acción`,`Diesel`.`AuditLogs`.`Observacion` AS `Observacion` from (`Diesel`.`AuditLogs` join `Diesel`.`Usuarios` on((`Diesel`.`Usuarios`.`IdUsuario` = `Diesel`.`AuditLogs`.`IdUsuario`)));
-
--- -----------------------------------------------------
--- View `Diesel`.`V_Ordenes`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `Diesel`.`V_Ordenes`;
-USE `Diesel`;
-CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `Diesel`.`V_Ordenes` AS select `O`.`IdOrden` AS `IdOrden`,`U`.`LugarUbicacion` AS `LugarUbicacion`,`O`.`Fecha` AS `Fecha`,`AU`.`Nombre` AS `AUTORIZA`,`B`.`Bomba` AS `Bomba`,`O`.`Placa` AS `Placa`,`T`.`Temporada` AS `Temporada`,`O`.`Boleta` AS `Boleta`,`O`.`Contenedor` AS `Contenedor`,`O`.`Chasis` AS `Chasis`,`O`.`Planta` AS `Planta`,`TS`.`TipoSalida` AS `TipoSalida`,concat(`BOM`.`Nombre`,' ',`BOM`.`Apellido`) AS `BOMBERO`,`O`.`Galones` AS `Galones`,`O`.`Descripcion` AS `Descripcion`,`O`.`Kilometraje` AS `Kilometraje`,`O`.`Impresa` AS `Impresa`,`O`.`Anulada` AS `Anulada`,`O`.`CxC` AS `CxC`,`O`.`Existencia` AS `Existencia`,`O`.`Reimpresion` AS `Reimpresion` from ((((((`Diesel`.`Ordenes` `O` join `Diesel`.`Ubicaciones` `U` on((`O`.`IdUbicacion` = `U`.`IdUbicacion`))) join `Diesel`.`Autorizan` `AU` on((`O`.`IdAutoriza` = `AU`.`IdAutoriza`))) join `Diesel`.`Bombas` `B` on((`O`.`IdBomba` = `O`.`IdBomba`))) join `Diesel`.`Temporadas` `T` on((`O`.`IdTemporada` = `T`.`IdTemporada`))) join `Diesel`.`TiposSalidas` `TS` on((`O`.`IdTipoSalida` = `TS`.`IdTipoSalida`))) join `Diesel`.`Bomberos` `BOM` on((`O`.`IdBombero` = `BOM`.`IdBombero`)));
 
 -- -----------------------------------------------------
 -- View `Diesel`.`V_Vehiculos`
