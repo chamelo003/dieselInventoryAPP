@@ -7,27 +7,27 @@
     <div class="col-sm-4 align-middle">
       <div class="card">
         <h5 class="card-header info-color white-text text-center py-4">
-          <%if(!message){%><strong>Inicia sesión</strong><%}%>
-          <% if(message) {%>  
+          <%if(!infor){%><strong>Inicia sesión</strong><%}%>
+          <% if(infor) {%>  
             <strong>ACCESO ADMINISTRADOR</strong>
-            <p><%= message %></p>
+            <p><%= infor %></p>
           <%}%>
         </h5>
         <!--Card content-->
         <div class="card-body px-lg-5 pt-0">
           <!-- Form si no obtengo mensaje del server la action del form será /users/login para loggearse como simple mortal
           <--- Si obtengo mensaje del server la action del form cambia a /users/signup para loggearse como admin y gestionar usuarios -->
-          <%if(!message){%><form class="text-center" style="color: #757575;" action="/users/login" method="POST"><%}%>
-          <%if(message){%><form class="text-center" style="color: #757575;" action="/users/signup" method="POST"><%}%>
+          <%if(!infor){%><form class="text-center" style="color: #757575;" action="/users/login" method="POST"><%}%>
+          <%if(infor){%><form class="text-center" style="color: #757575;" action="/users/signup" method="POST"><%}%>
             <!-- Email -->
             <div class="md-form">
-              <input type="text" id="usuario" name="usuario" required class="form-control" autocomplete="off">
+              <input type="text" id="usuario" name="username" required class="form-control" autocomplete="off">
               <label for="usuario">Usuario</label>
             </div>
     
             <!-- Password -->
             <div class="md-form">
-              <input type="password" id="contra" name="contra" required class="form-control">
+              <input type="password" id="contra" name="password" required class="form-control">
               <label for="contra">Contraseña</label>
             </div>
     
@@ -35,7 +35,7 @@
             <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Entrar</button>
     
             <!-- Register Si no obtengo un mensaje desde el servidor en la ruta pinto este zelda :v-->
-              <%if (!message){ %><a href="/users/signup">Registro de usuarios</a><%}%>
+              <%if (!infor){ %><a href="/users/signup">Registro de usuarios</a><%}%>
             </p>
           </form>
           <!-- Form -->

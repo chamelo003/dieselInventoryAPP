@@ -1,12 +1,16 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
 const passport = require('passport');
 const MySQLStore = require('express-mysql-session')(session);
+const flash = require('connect-flash');
+const validator = require('express-validator');
+
+// jalo mi database
 const { dbString } = require('./DAO/conn_string');
+// creo mi server
 var app = express();
 // requiero la libreria que escribi para la autenticacion y creacion de usuarios
 require('./lib/passport');
@@ -19,7 +23,6 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret:'thisisaMFsecret',
@@ -27,11 +30,16 @@ app.use(session({
   saveUninitialized: false,
   store: new MySQLStore(dbString)
 }));
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(validator());
 
 //VARIABLES GLOBALES
+//AQui mando mensajes y alertas cuando 
 app.use((req, res, next) => {
-  //app.locals.message = req.flash('message');
-  //app.locals.success = req.flash('success');
+  app.locals.message = req.flash('message');
+  app.locals.success = req.flash('success');
   app.locals.user = req.user;
   next();
 });
@@ -54,6 +62,7 @@ app.use('/reportes',reportesRouter);
 app.get('/',(req,res,next)=>{
   res.redirect('/users/login');
 });
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
