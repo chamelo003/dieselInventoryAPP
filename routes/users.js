@@ -50,10 +50,19 @@ router.post('/signup',(req,res,next)=>{
   //res.send('si funca signup xD');
 });
 
+// MOSTRAR EL PANEL DE ADMINISTRACION DE USUARIOS
 router.get('/users',(req,res,next)=>{
   res.render('./GestionUsuariosViews/users.ejs',{title:'Ususarios'});
 })
 
+router.post('/reg',passport.authenticate('local.signup',{
+  successRedirect: '/users',
+  successFlash: true,
+  failureRedirect: '/users',
+  failureFlash: true
+}));
+
+// CERRAR SESION DEL SISTEMA
 router.get('/logout',(req,res,next)=>{
   // kill session
   req.logOut();
