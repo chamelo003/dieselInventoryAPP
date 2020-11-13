@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es-ES">
 <%include ../Layouts/Login/Header.ejs %>
 <%include ../Layouts/Ordenes/tabs.ejs %>
 <div class="container-fluid">
@@ -70,7 +70,7 @@
                         <div class="col-lg-12">
                             <!-- Material input -->
                             <div class="md-form mt-0">
-                            <input id="nom" name="nombre" type="text" class="form-control" autocomplete="off" required>
+                            <input id="nom" name="fullname" type="text" class="form-control" autocomplete="off" required>
                             <label for="nom">Nombre completo</label>
                             </div>
                         </div>
@@ -93,7 +93,7 @@
 											</div>
 											<!-- Grid column -->                         
                         <div class="md-form col-lg-12">
-                            <select required="required" class="browser-default custom-select">
+                            <select required="required" name="idlocation" class="browser-default custom-select">
                                 <option disabled selected value="">Elija la ubicacion</option>
                                 <option value="1">Cuarto Frio</option>
                                 <option value="2">San Lorenzo</option>
@@ -102,7 +102,15 @@
                                 <option value="5">Ojo de Agua</option>
                             </select>
                             <!--label class="mdb-main-label">Ubicacion</label-->
-                        </div>
+												</div>
+												<div class="md-form col-lg-12">
+													<select required="required" name="permisos" class="browser-default custom-select">
+															<option disabled selected value="">Elija el tipo de usuario</option>
+															<option value="rwx">Administrador</option>
+															<option value="rw-">Usuario común</option>
+													</select>
+													<!--label class="mdb-main-label">Ubicacion</label-->
+											</div>
                         <div class="col-md-12">
                             <button class="btn btn-primary" type="submit">Registrar</button>
                         </div>

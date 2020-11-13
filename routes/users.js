@@ -6,7 +6,8 @@
 
 const { Router } = require('express');
 const router = Router();
-
+const async = require('async');
+const bcrypt = require('bcryptjs');
 // Traigo mi conexion a la DB
 const pool = require('../DAO/conn_string');
 // instancio passport para poder loggear usuarios
@@ -51,16 +52,25 @@ router.post('/signup',(req,res,next)=>{
 });
 
 // MOSTRAR EL PANEL DE ADMINISTRACION DE USUARIOS
-router.get('/users',(req,res,next)=>{
-  res.render('./GestionUsuariosViews/users.ejs',{title:'Ususarios'});
+router.get('/',(req,res,next)=>{
+  res.render('./GestionUsuariosViews/users.ejs',{title:'Usuarios'});
 })
 
-router.post('/reg',passport.authenticate('local.signup',{
-  successRedirect: '/users',
-  successFlash: true,
-  failureRedirect: '/users',
-  failureFlash: true
-}));
+router.post('/reg',(req,res,next)=>{
+  console.log(req.body);
+  var salt = bcrypt.genSaltSync(10);
+  var password = bcrypt.hashSync(req.body.password,salt);
+  console.log(password);
+  var user = {
+      Nombre: req.body.fullname,
+      Usuario: req.body.username,
+      Contrasena : password,
+      IdUbicacion: req.body.idlocation,
+      Permisos: req.body.permisos
+  };
+  const result = async( pool.query('Call SP_AgUsuario(?)', user));
+  console.log(result);
+});
 
 // CERRAR SESION DEL SISTEMA
 router.get('/logout',(req,res,next)=>{
