@@ -9,38 +9,16 @@
 
 const { Router } = require('express');
 const router = Router();
-// JALO MI DB
-let dbString = {
-    host: 'localhost',
-    port: '3306',
-    user: 'root',
-    password: 'H@ck3r$h0w',
-    database: 'Diesel'
-}
-const mysql = require('mysql');
-const async = require('async');
-const pool = mysql.createPool(dbString);
+const Autoriza = require('../Models/CatalogosModels/Autoriza');
 //#region AUTORIZADORES
 // Acciones para los que autorizan 15/Sept/2020
 // Ruta para ver listado de personas que autorizan 15/Sept/2020
 // Link en la vista: ('/catalogos/autorizan')
 router.get('/autorizan',(req,res,next)=>{
-    //res.send('aqui vas a ver despues la lista de los que autorizan xD');    
+    //aqui jalo la data luego renderizo xD   
     res.render('./OrdenesViews/catalogosViews/Autoriza',{title:'Autorizadores',data:'data de ejemplo autoriza'});
 });
-router.post('/autorizan/new',(req,res,next)=>{
-const autoriza = {
-    N: req.body.nombre,
-    OBS: req.body.obs,
-    IDUB: req.body.idloc
-};
-pool.query('CALL SP_AgAutoriza(?,?,?)',autoriza,(err,rows)=>{
-    if(err)throw err;
-    console.log(err);
-
-    res.send(rows[0]);
-});
-});
+router.post('/autorizan/new');
 //#endregion
 
 //#region TRANSPORTISTAS
