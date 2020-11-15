@@ -25,32 +25,24 @@
                                     <th class="th-sm">Nombre</th>
                                     <th class="th-sm">Ubicacion</th>
                                     <th class="th-sm">Observacion</th>
-
+                                    <th class="th-sm">Acciones</th>
                                 </tr>
                                 </thead>
                                 <tbody class="table-hover">
-                                <tr>
-                                    <td>1</td>
-                                    <td>Elver</td>
-                                    <td>Edinburgh</td>
-                                    <td>61</td>
-                                </tr>
-                                    
-                                <!-- Grid row -->
-                                <tr>
-                                    <td>Jena Gaines</td>
-                                    <td>Office Manager</td>
-                                    <td>London</td>
-                                    <td>30</td>
-                                </tr>
-                                <tr>
-                                    <td>Quinn Flynn</td>
-                                    <td>Support Lead</td>
-                                    <td>Edinburgh</td>
-                                    <td>22</td>
-                                    <td>2013/03/03</td>
-                                    <td>$342,000</td>
-                                </tr>
+                                    <% if (data) { %>
+                                        <% for(var i = 0; i < data.length; i++) { %>
+                                          <tr>
+                                            <td><%= data[i].IdAutoriza %></td>
+                                            <td><%= data[i].Nombre %></td>
+                                            <td><%= data[i].Ubicacion %></td>
+                                            <td><%= data[i].Observacion %></td>
+                                            <td>
+                                              <a href="/catalogos/autorizan/edit/<%= data[i].IdAutoriza %>" class="btn btn-warning btn-sm">Editar</a>
+                                              <button onclick="prompt()" href="/catalogos/autorizan/delete/<%= data[i].IdAutoriza %>" class="btn btn-danger btn-sm">Eliminar</button>
+                                            </td>
+                                          </tr>
+                                        <% } %>
+                                      <% } %>
                                 </tbody>
                             </table>
                         </div>
@@ -74,26 +66,27 @@
                             <div class="col-lg-12">
                                 <!-- Material input -->
                                 <div class="md-form mt-0">
-                                <input id="nom" name="nombre" type="text" class="form-control" autocomplete="off" required>
+                                <input id="nom" name="N" type="text" class="form-control" autocomplete="off" required>
                                 <label for="nom">Nombre completo</label>
                                 </div>
                             </div>
                             <!-- Grid column -->                        
                             <!-- Grid column -->
                             <div class="md-form col-lg-12">
-                                <textarea id="form7" name="obs" class="md-textarea form-control" rows="3" autocomplete="off"></textarea>
+                                <textarea id="form7" name="OBS" class="md-textarea form-control" rows="3" autocomplete="off"></textarea>
                                 <label for="form7">Observacion</label>
                             </div>
                             <!-- Grid column -->
                             </div>
                             <div class="md-form col-lg-12">
-                                <select required="required" name="idloc" class="browser-default custom-select">
+                                <select required="required" name="IDUB" class="browser-default custom-select">
                                     <option disabled selected value="">Elija la ubicacion</option>
                                     <option value="1">Cuarto Frio</option>
                                     <option value="2">San Lorenzo</option>
-                                    <option value="3">Suragroh</option>
+                                    <option value="3">Lavaderos</option>
                                     <option value="4">Santa Rosa</option>
-                                    <option value="5">Ojo de Agua</option>
+                                    <option value="5">Ojo de agua</option>
+                                    <option value="6">La Granja</option>
                                 </select>
                                 <!--label class="mdb-main-label">Ubicacion</label-->
                             </div>

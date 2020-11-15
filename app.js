@@ -7,9 +7,10 @@ const passport = require('passport');
 const MySQLStore = require('express-mysql-session')(session);
 const flash = require('connect-flash');
 const validator = require('express-validator');
+//const { database } = require('./DAO/database');
+const mysql = require('mysql');
+myConnection = require('express-myconnection');
 
-// jalo mi database
-const { dbString } = require('./DAO/conn_string');
 // creo mi server
 var app = express();
 // requiero la libreria que escribi para la autenticacion y creacion de usuarios
@@ -28,13 +29,20 @@ app.use(session({
   secret:'thisisaMFsecret',
   resave:false,
   saveUninitialized: false,
-  store: new MySQLStore(dbString)
+  //store: new MySQLStore(database)
 }));
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(validator());
 
+app.use(myConnection(mysql, {
+  host: 'localhost',
+  user: 'root',
+  password: 'H@ck3r$h0w',
+  port: 3306,
+  database: 'Diesel'
+}, 'single'));
 //VARIABLES GLOBALES
 //AQui mando mensajes y alertas cuando 
 app.use((req, res, next) => {

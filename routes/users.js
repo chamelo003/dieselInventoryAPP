@@ -9,7 +9,6 @@ const router = Router();
 const async = require('async');
 const bcrypt = require('bcryptjs');
 // Traigo mi conexion a la DB
-const pool = require('../DAO/conn_string');
 // instancio passport para poder loggear usuarios
 const passport = require('passport');
 // cjalo mi guachi de sesiones xD

@@ -6,29 +6,39 @@
 *   se encuentran en: /views/Layouts/Login/Header.ejs
 *****************************************************/
 // Requerimos las librerias necesarias para que funcione xD
-
 const { Router } = require('express');
 const router = Router();
-const Autoriza = require('../Models/CatalogosModels/Autoriza');
+const { isLoggedIn } = require('../lib/auth');
+
+// Jalo mis controladores
+const AutorizaCont = require('../Controllers/CatalogosControllers/Autoriza');
+const TransportistaCont = require('../Controllers/CatalogosControllers/Transportista');
 //#region AUTORIZADORES
-// Acciones para los que autorizan 15/Sept/2020
-// Ruta para ver listado de personas que autorizan 15/Sept/2020
+// Acciones para los que autorizan
+// Ruta para ver listado de personas que autorizan
 // Link en la vista: ('/catalogos/autorizan')
-router.get('/autorizan',(req,res,next)=>{
-    //aqui jalo la data luego renderizo xD   
-    res.render('./OrdenesViews/catalogosViews/Autoriza',{title:'Autorizadores',data:'data de ejemplo autoriza'});
-});
-router.post('/autorizan/new');
+// MOSTRAR EL LISTADO DE AUTORIZADORES
+router.get('/autorizan',AutorizaCont.Lista);
+// AGREGAR UN AUTORIZADOR
+router.post('/autorizan/new',AutorizaCont.Agrega);
+// MODIFICAR LOS DATOS DE UN AUTORIZADOR
+router.get('/autorizan/edit/:id', AutorizaCont.Actualiza);
+// ELIMINAR A UN AUTORIZADOR
+router.get('/autorizan/delete/:id', AutorizaCont.Elimina);
 //#endregion
 
 //#region TRANSPORTISTAS
 // Acciones para transportistas
 // Ruta para ver el listado de los transportistas
 // Link en la vista: ('/catalogos/trans')
-router.get('/trans',(req,res,next)=>{
-    //res.send('lista de los transportistas');
-    res.render('./OrdenesViews/catalogosViews/Transportista',{title:'Transportistas',data:'data de ejemplo transportistas :v'});
-});
+// Ver listado de transportistas
+router.get('/trans',TransportistaCont.Lista);
+// agregar transportista
+router.post('/trans/new',TransportistaCont.Agrega);
+// modificar un transportista
+router.get('/trans/edit/:id',TransportistaCont.Actualiza);
+// eliminar un transportista
+router.get('/trans/del/:id',TransportistaCont.Elimina);
 //#endregion
 
 //#region MOTORISTAS
