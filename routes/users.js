@@ -9,6 +9,7 @@ const router = Router();
 const async = require('async');
 const bcrypt = require('bcryptjs');
 // Traigo mi conexion a la DB
+const pool = require('../DAO/database');
 // instancio passport para poder loggear usuarios
 const passport = require('passport');
 // cjalo mi guachi de sesiones xD
@@ -60,14 +61,15 @@ router.post('/reg',(req,res,next)=>{
   var salt = bcrypt.genSaltSync(10);
   var password = bcrypt.hashSync(req.body.password,salt);
   console.log(password);
-  var user = {
-      Nombre: req.body.fullname,
-      Usuario: req.body.username,
-      Contrasena : password,
-      IdUbicacion: req.body.idlocation,
-      Permisos: req.body.permisos
-  };
-  const result = async( pool.query('Call SP_AgUsuario(?)', user));
+
+    Nombre= req.body.fullname
+    Usuario = req.body.username
+    Contrasena = password
+    IdUbicacion = req.body.idlocation
+    Permisos = req.body.permisos
+
+  var q = `Call SP_AgUsuario('${Nombre}','${Usuario}','${Contrasena}',${IdUbicacion},'${Permisos}')`;
+  const result = pool.query(q);
   console.log(result);
 });
 

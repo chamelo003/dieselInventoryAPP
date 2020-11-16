@@ -36,7 +36,7 @@ router.get('/trans',TransportistaCont.Lista);
 // agregar transportista
 router.post('/trans/new',TransportistaCont.Agrega);
 // modificar un transportista
-router.get('/trans/edit/:id',TransportistaCont.Actualiza);
+router.get('/trans/edit/:id',TransportistaCont.Edit);
 // eliminar un transportista
 router.get('/trans/del/:id',TransportistaCont.Elimina);
 //#endregion

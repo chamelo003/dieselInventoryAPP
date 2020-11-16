@@ -23,15 +23,37 @@ controller.Agrega = (req,res)=>{
         if(err) throw err;
         let q = `CALL SP_AgTransportista('${rtn}','${nombre}','${apellido}','${Obs}')`;
         const query = conn.query(q,(err,results)=>{
-            if(err) throw err;
+            if(err){  //we make sure theres an error (error obj)
+                if(err.errno==1062){   
+                req.flash('message','The entry already exist.'); //we send the flash msg
+                return res.redirect('/catalogos/trans');
+                conn.end();
+                }
+                else{
+                    throw err;
+                conn.end();
+                }
+            }
             console.log(results);
             res.redirect('/catalogos/trans')
         });
     });
 };
 
+//Selecciona la data del registro que se quiere editar
+controller.Editar =  (req,res)=>{
+    const { id } = req.params;
+    req.getConnection((err, conn) => {
+        conn.query("SELECT * FROM Transportista WHERE id = ?", [id], (err, rows) => {
+        res.render('customers_edit', {
+            data: rows[0]
+        })
+        });
+    });
+}
+
 // Modificar un registro en la base de datos
-controller.Actualiza = (req,res)=>{
+controller.Edit = (req,res)=>{
     rtn = req.body.rtn;
     nombre = req.body.nom;
     apellido = req.body.ape;
@@ -39,26 +61,19 @@ controller.Actualiza = (req,res)=>{
     console.log(req.body);
     req.getConnection((err,conn)=>{
         if(err) throw err;
-        try {
-            let q = `CALL SP_ModTransportista(${id},'${N}','${OBS}',${IDUB})`
-            const query = conn.query(q,(err,results)=>{
-            //if(err) throw err;
-            console.log(results);
+
+        let q = `CALL SP_ModTransportista(${rtn},'${nombre}','${apellido}',${Obs})`;
+        const query = conn.query(q,(err,results)=>{
+        console.log(results);
             res.redirect('/catalogos/autorizan');
         });
-        } catch (errno) {
-            if(errno == 1062){
-                alert("El registro que intenta agregar ya existe");
-            }
-        }
-        
     });
 };
 
 // Eliminar un registro en la base de datos
 controller.Elimina = (req,res)=>{
     const {rtn} = req.params;
-    console.log(id);
+    console.log(rtn);
     req.getConnection((err,conn)=>{
         if(err) throw err;
         let q = `CALL SP_DelTransportista(${rtn});`
@@ -70,6 +85,8 @@ controller.Elimina = (req,res)=>{
     });
 };
 
+// Llenar la tabla de la ventana modal de transportistas. 
+// Esta se va a usar para seleccionar el transportista al momento de registrar un motorista
 controller.ModalTransportista = (req,res)=>{
     req.getConnection((err,conn) => {
         const q = `SELECT RTN, CONCAT(Nombre,' ',Apellido) AS Transportista FROM Transportistas;`
