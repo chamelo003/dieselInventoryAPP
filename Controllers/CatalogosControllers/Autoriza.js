@@ -29,6 +29,21 @@ controller.Agrega = (req,res)=>{
     });
 };
 
+// SELECCIONAR UN REGISTRO PARA MODIFICARLO
+controller.Edita = (req,res)=>{
+    const {id} = req.params;
+    console.log(req.body);
+    req.getConnection((err,conn)=>{
+        if(err) throw err;
+        let q = `SELECT * FROM Autorizan WHERE IdAutoriza = ${id}`;
+        const query = conn.query(q,(err,results)=>{
+            if(err) throw err;
+            console.log(results);
+            res.redirect('/catalogos/autorizan');
+        });
+    });
+};
+
 // Modificar un registro en la base de datos
 controller.Actualiza = (req,res)=>{
     const {id} = req.params;

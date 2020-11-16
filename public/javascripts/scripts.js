@@ -69,6 +69,7 @@ $(document).ready( function (){
             $('#modalExtData').modal('hide');
         });
     });
+
 //#endregion
 $('#fecha').change(function(){
     alert($(this).val());

@@ -37,12 +37,12 @@
                                             <td><%= data[i].Ubicacion %></td>
                                             <td><%= data[i].Observacion %></td>
                                             <td>
-                                              <a href="/catalogos/autorizan/edit/<%= data[i].IdAutoriza %>" class="btn btn-warning btn-sm">Editar</a>
-                                              <button onclick="prompt()" href="/catalogos/autorizan/delete/<%= data[i].IdAutoriza %>" class="btn btn-danger btn-sm">Eliminar</button>
+                                              <a href="/catalogos/autorizan/edit/<%= data[i].IdAutoriza %>" id="editAutoriza" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalEditar">Editar</button>
+                                              <a href="/catalogos/autorizan/delete/<%= data[i].IdAutoriza %>" class="btn btn-danger btn-sm">Eliminar</a>
                                             </td>
                                           </tr>
                                         <% } %>
-                                      <% } %>
+                                    <% } %>
                                 </tbody>
                             </table>
                         </div>
@@ -59,7 +59,7 @@
                     <!--section class="border p-4  d-flex justify-content-center"-->
                         <!-- Material form row -->
                     <div class="row d-flex justify-content-center">
-                        <form class="text-center border border-light p-5 col-md-4" action="/catalogos/autorizan/new" method="POST">
+                        <form class="text-center border border-light p-5 col-md-4" action="/catalogos/autorizan/new method="POST">
                             <!-- Grid row -->
                             <div class="form-row">
                             <!-- Grid column -->
@@ -103,5 +103,72 @@
         </div>
     </div>
 <!--Incluyo la plantilla que tiene los scripts y el footer-->
+
+<!--MODAL PARA EDITAR-->
+
+<div class="modal fade modal-fluid" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title trans">Editar <%= title %> </h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <div class="container-fluid">
+            <div class="row d-flex justify-content-center">
+                <% if(data.id){ %>
+                <form class="text-center border border-light p-5 col-lg" action="#" method="POST">
+                    <!-- Grid row -->
+                    <div class="form-row">
+                    <!-- Grid column -->
+                    <div class="md-form col-lg-12">
+                        <input id="idaut" name="idaut" type="text" class="form-control" autocomplete="off" required value="<%= data.IdAutoriza %>">
+                        <label for="idaut">Id</label>
+                    </div>
+                    <!-- Material input -->
+                    <div class="md-form col-lg-12">
+                        <input id="nom" name="N" type="text" class="form-control" autocomplete="off" required value="<%= data.Nombre %>">
+                        <label for="nom">Nombre completo</label>
+                    </div>
+                    <!-- Grid column -->                        
+                    <!-- Grid column -->
+                    <div class="md-form col-lg-12">
+                        <textarea id="form7" name="OBS" class="md-textarea form-control" rows="3" autocomplete="off" value="<%= data.Observacion %>"></textarea>
+                        <label for="form7">Observacion</label>
+                    </div>
+                    <!-- Grid column -->
+                    </div>
+                    <div class="md-form col-lg-12">
+                        <select required="required" name="IDUB" class="browser-default custom-select" value="<%= data.idUbicacion %>">
+                            <option disabled selected value="">Elija la ubicacion</option>
+                            <option value="1">Cuarto Frio</option>
+                            <option value="2">San Lorenzo</option>
+                            <option value="3">Lavaderos</option>
+                            <option value="4">Santa Rosa</option>
+                            <option value="5">Ojo de agua</option>
+                            <option value="6">La Granja</option>
+                        </select>
+                        <!--label class="mdb-main-label">Ubicacion</label-->
+                    </div>
+                    <div class="col-md-12">
+                        <button class="btn btn-primary" type="submit">Actualizr datos</button>
+                    </div>
+                    <!-- Grid row -->
+                </form>
+                <% } %>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<!--MODAL PARA EDITAR-->
 <% include ../../Layouts/Ordenes/Footer.ejs %>
 </html>

@@ -22,7 +22,7 @@ router.get('/autorizan',AutorizaCont.Lista);
 // AGREGAR UN AUTORIZADOR
 router.post('/autorizan/new',AutorizaCont.Agrega);
 // MODIFICAR LOS DATOS DE UN AUTORIZADOR
-router.get('/autorizan/edit/:id', AutorizaCont.Actualiza);
+router.get('/autorizan/edit/:id', AutorizaCont.Edita);
 // ELIMINAR A UN AUTORIZADOR
 router.get('/autorizan/delete/:id', AutorizaCont.Elimina);
 //#endregion
