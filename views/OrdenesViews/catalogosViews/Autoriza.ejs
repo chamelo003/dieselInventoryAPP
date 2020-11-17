@@ -23,7 +23,6 @@
                                 <tr>
                                     <th class="th-sm">IdAutoriza</th>
                                     <th class="th-sm">Nombre</th>
-                                    <th class="th-sm">Ubicacion</th>
                                     <th class="th-sm">Observacion</th>
                                     <th class="th-sm">Acciones</th>
                                 </tr>
@@ -34,7 +33,6 @@
                                           <tr>
                                             <td><%= data[i].IdAutoriza %></td>
                                             <td><%= data[i].Nombre %></td>
-                                            <td><%= data[i].Ubicacion %></td>
                                             <td><%= data[i].Observacion %></td>
                                             <td>
                                               <a href="/catalogos/autorizan/edit/<%= data[i].IdAutoriza %>" id="editAutoriza" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalEditar">Editar</button>
@@ -77,18 +75,6 @@
                                 <label for="form7">Observacion</label>
                             </div>
                             <!-- Grid column -->
-                            </div>
-                            <div class="md-form col-lg-12">
-                                <select required="required" name="IDUB" class="browser-default custom-select">
-                                    <option disabled selected value="">Elija la ubicacion</option>
-                                    <option value="1">Cuarto Frio</option>
-                                    <option value="2">San Lorenzo</option>
-                                    <option value="3">Lavaderos</option>
-                                    <option value="4">Santa Rosa</option>
-                                    <option value="5">Ojo de agua</option>
-                                    <option value="6">La Granja</option>
-                                </select>
-                                <!--label class="mdb-main-label">Ubicacion</label-->
                             </div>
                             <div class="col-md-12">
                                 <button class="btn btn-primary" type="submit">Registrar</button>

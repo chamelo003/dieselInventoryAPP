@@ -3,12 +3,13 @@ const controller = {};
 /** ZAMPAR AQUI TODO EL MIERDERO DE CIERRES NADA MAS OCUPO CREAR DIA (INSERT) Y CERRAR DIA (UPDATE)*/
 
 /** Abrir el pinshi dia :v */
-controller.CrearCierre = (req,res)=>{
+controller.Crear = (req,res)=>{
     
     const q = `CALL SP_AgCierre()`;
 }
 
 controller.Cerrar = (req,res)=>{
-    const q = ``;
+    
+    const q = `CALL SP_ModCierre()`;
 }
 module.exports = controller;

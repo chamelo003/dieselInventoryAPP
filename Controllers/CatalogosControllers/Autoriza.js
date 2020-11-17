@@ -3,7 +3,7 @@ const controller = {};
 // Seleccionar un registro en la base de datos
 controller.Lista = (req,res)=>{
     req.getConnection((err,conn) => {
-        conn.query('SELECT * FROM V_Autorizan;',(err,results)=>{
+        conn.query('SELECT * FROM Autorizan;',(err,results)=>{
             if(err){
                 res.json(err);
             }
@@ -32,7 +32,7 @@ controller.Agrega = (req,res)=>{
 // SELECCIONAR UN REGISTRO PARA MODIFICARLO
 controller.Edita = (req,res)=>{
     const {id} = req.params;
-    console.log(req.body);
+    console.log(req.params);
     req.getConnection((err,conn)=>{
         if(err) throw err;
         let q = `SELECT * FROM Autorizan WHERE IdAutoriza = ${id}`;

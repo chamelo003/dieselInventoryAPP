@@ -20,9 +20,21 @@
                                     <tr>
                                         <th>Id</th>
                                         <th>Bomba</th>
+                                        <th>Acciones</th>
                                 </thead>
-                                <tbody>
-                                    
+                                <tbody class="table-hover">
+                                    <% if (data) { %>
+                                        <% for(var i = 0; i < data.length; i++) { %>
+                                          <tr>
+                                            <td><%= data[i].IdBomba %></td>
+                                            <td><%= data[i].Bomba %></td>
+                                            <td>
+                                              <a href="/catalogos/bomb/edit/<%= data[i].IdBomba %>" id="editAutoriza" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalEditar">Editar</button>
+                                              <a href="/catalogos/bomb/delete/<%= data[i].IdBomba %>" class="btn btn-danger btn-sm">Eliminar</a>
+                                            </td>
+                                          </tr>
+                                        <% } %>
+                                    <% } %>
                                 </tbody>
                             </table>  
                         </div>
@@ -46,16 +58,6 @@
                                 <div class="md-form mt-0">
                                     <input id="bomba" type="text" class="form-control" autocomplete="off" required>  
                                     <label for="bomba">Nombre de la Bomba</label>                                  
-                                </div>
-                                <div class="md-form col-lg-12">
-                                    <select required="required" class="browser-default custom-select">
-                                        <option disabled selected value="">Elija la ubicacion</option>
-                                        <option value="1">Cuarto Frio</option>
-                                        <option value="2">San Lorenzo</option>
-                                        <option value="3">Suragroh</option>
-                                        <option value="4">Santa Rosa</option>
-                                        <option value="5">Ojo de Agua</option>
-                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-12">

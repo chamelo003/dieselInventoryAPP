@@ -76,16 +76,6 @@ router.post('/veh',(req,res,next)=>{
 })
 //#endregion
 
-//#region UBICACIONES
-// Acciones para las Ubicaciones
-// Ruta para ver las ubicaciones
-// Link en la vista: ('/catalogos/loc')
-router.get('/loc',(req,res,next)=>{
-    //res.send('lista de tipos de ubicaciones');
-    res.render('./OrdenesViews/catalogosViews/Ubicaciones',{title:'Ubicaciones'});
-});
-//#endregion
-
 //#region BOMBAS
 // Acciones para las bombas de combustible
 // Ruta para ver listado de bombas
