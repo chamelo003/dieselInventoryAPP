@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<% include ../../../Layouts/Ordenes/Header.ejs %>
+    <h3>Editar datos del Autorizador</h3>
+        <div class="container-fluid">
+            <div class="row d-flex justify-content-center">
+                <form class="text-center border border-light p-5 col-lg" action="/catalogos/autorizan/edit/<%= results[0].IdAutoriza %>" method="POST">
+                    <!-- Grid row -->
+                    <div class="form-row">
+                    <!-- Grid column -->
+                    <div class="md-form col-lg-12">
+                        <input id="modalIdAut" name="idaut" type="text" class="form-control" autocomplete="off" required placeholder="  " value="<%= results[0].IdAutoriza %>" readonly="readonly">                        
+                        <label for="modalIdAut">Id</label>
+                    </div>
+                    <!-- Material input -->
+                    <div class="md-form col-lg-12">
+                        <input id="modalNomAut" name="N" type="text" class="form-control" autocomplete="off" required placeholder="  " value="<%= results[0].Nombre %>">
+                        <label for="modalNomAut">Nombre completo</label>
+                    </div>
+                    <!-- Grid column -->                        
+                    <!-- Grid column -->
+                    <div class="md-form col-lg-12">
+                        <textarea id="modalOBS" name="OBS" class="md-textarea form-control" rows="3" autocomplete="off" placeholder="  " ><%= results[0].Observacion %></textarea>
+                        <label for="modalOBS">Observacion</label>
+                    </div>
+                    <!-- Grid column -->
+                    </div>
+                    <div class="col-md-12">
+                        <button class="btn btn-primary" id="actualizarAutoriza">Guardar cambios</button>
+                    </div>
+                    <!-- Grid row -->
+                </form>
+            </div>
+        </div>
+
+<!--MODAL PARA EDITAR-->
+    
+<% include ../../../Layouts/Ordenes/Footer.ejs %>
+</html>
+
+
+

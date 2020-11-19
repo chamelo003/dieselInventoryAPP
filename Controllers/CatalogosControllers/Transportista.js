@@ -25,7 +25,7 @@ controller.Agrega = (req,res)=>{
         const query = conn.query(q,(err,results)=>{
             if(err){  //we make sure theres an error (error obj)
                 if(err.errno==1062){   
-                req.flash('message','The entry already exist.'); //we send the flash msg
+                req.flash('message','El RTN que intenta agregar ya se encuentra registrado.'); //we send the flash msg
                 return res.redirect('/catalogos/trans');
                 conn.end();
                 }
@@ -41,13 +41,13 @@ controller.Agrega = (req,res)=>{
 };
 
 //Selecciona la data del registro que se quiere editar
-controller.Editar =  (req,res)=>{
+controller.selectEdit =  (req,res)=>{
     const { id } = req.params;
     req.getConnection((err, conn) => {
-        conn.query("SELECT * FROM Transportista WHERE id = ?", [id], (err, rows) => {
-        res.render('customers_edit', {
-            data: rows[0]
-        })
+        q = `SELECT * FROM Transportistas WHERE RTN =${id}`;
+        conn.query(q, (err, results) => {
+            if(err) throw err;
+        res.render('./OrdenesViews/catalogosViews/EditForms/TransportistaEdit', {results,title:"Editar Transportista"});
         });
     });
 }
@@ -61,11 +61,11 @@ controller.Edit = (req,res)=>{
     console.log(req.body);
     req.getConnection((err,conn)=>{
         if(err) throw err;
-
-        let q = `CALL SP_ModTransportista(${rtn},'${nombre}','${apellido}',${Obs})`;
+        let q = `CALL SP_ModTransportista('${rtn}','${nombre}','${apellido}','${Obs}')`;
         const query = conn.query(q,(err,results)=>{
+            if(err) throw err;
         console.log(results);
-            res.redirect('/catalogos/autorizan');
+            res.redirect('/catalogos/trans');
         });
     });
 };
@@ -80,7 +80,7 @@ controller.Elimina = (req,res)=>{
         const query = conn.query(q,(err,results)=>{
             if(err) throw err;
             console.log(results);
-            res.redirect('/catalogos/autorizan');
+            res.redirect('/catalogos/trans');
         });
     });
 };

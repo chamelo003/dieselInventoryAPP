@@ -41,7 +41,8 @@ app.use(myConnection(mysql, {
   user: 'root',
   password: 'H@ck3r$h0w',
   port: 3306,
-  database: 'Diesel'
+  database: 'Diesel',
+  multipleStatements: true
 }, 'single'));
 //VARIABLES GLOBALES
 //AQui mando mensajes y alertas cuando 

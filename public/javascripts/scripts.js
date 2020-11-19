@@ -70,6 +70,7 @@ $(document).ready( function (){
         });
     });
 
+
 //#endregion
 $('#fecha').change(function(){
     alert($(this).val());

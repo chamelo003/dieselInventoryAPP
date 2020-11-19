@@ -21,8 +21,10 @@ const TransportistaCont = require('../Controllers/CatalogosControllers/Transport
 router.get('/autorizan',AutorizaCont.Lista);
 // AGREGAR UN AUTORIZADOR
 router.post('/autorizan/new',AutorizaCont.Agrega);
+//SELECCIONAR UN AUTORIZADOR PARA MODIFICAR SUS DATOS
+router.get('/autorizan/:id',AutorizaCont.selectEdit);
 // MODIFICAR LOS DATOS DE UN AUTORIZADOR
-router.get('/autorizan/edit/:id', AutorizaCont.Edita);
+router.post('/autorizan/edit/:id', AutorizaCont.Edita);
 // ELIMINAR A UN AUTORIZADOR
 router.get('/autorizan/delete/:id', AutorizaCont.Elimina);
 //#endregion
@@ -35,8 +37,10 @@ router.get('/autorizan/delete/:id', AutorizaCont.Elimina);
 router.get('/trans',TransportistaCont.Lista);
 // agregar transportista
 router.post('/trans/new',TransportistaCont.Agrega);
+// seleccionar un transportista para editarlo
+router.get('/trans/:id',TransportistaCont.selectEdit);
 // modificar un transportista
-router.get('/trans/edit/:id',TransportistaCont.Edit);
+router.post('/trans/edit/:id',TransportistaCont.Edit);
 // eliminar un transportista
 router.get('/trans/del/:id',TransportistaCont.Elimina);
 //#endregion

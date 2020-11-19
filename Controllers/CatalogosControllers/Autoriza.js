@@ -16,11 +16,10 @@ controller.Lista = (req,res)=>{
 controller.Agrega = (req,res)=>{
     N = req.body.N;
     OBS = req.body.OBS;
-    IDUB = req.body.IDUB;
     console.log(req.body);
     req.getConnection((err,conn)=>{
         if(err) throw err;
-        let q = `CALL SP_AgAutoriza('${N}','${OBS}',${IDUB})`;
+        let q = `CALL SP_AgAutoriza('${N}','${OBS}')`;
         const query = conn.query(q,(err,results)=>{
             if(err) throw err;
             console.log(results);
@@ -29,23 +28,22 @@ controller.Agrega = (req,res)=>{
     });
 };
 
-// SELECCIONAR UN REGISTRO PARA MODIFICARLO
-controller.Edita = (req,res)=>{
+// Seleccionar un registro para modificar
+controller.selectEdit = (req,res)=>{
     const {id} = req.params;
-    console.log(req.params);
     req.getConnection((err,conn)=>{
         if(err) throw err;
-        let q = `SELECT * FROM Autorizan WHERE IdAutoriza = ${id}`;
+        let q = `Select * FROM Autorizan WHERE IdAutoriza = ${id};`
         const query = conn.query(q,(err,results)=>{
             if(err) throw err;
             console.log(results);
-            res.redirect('/catalogos/autorizan');
+            res.render('./OrdenesViews/catalogosViews/EditForms/AutorizaEdit',{results, title:"Editar Autorizador"});
         });
     });
 };
 
 // Modificar un registro en la base de datos
-controller.Actualiza = (req,res)=>{
+controller.Edita = (req,res)=>{
     const {id} = req.params;
     N = req.body.N;
     OBS = req.body.OBS;
@@ -53,7 +51,7 @@ controller.Actualiza = (req,res)=>{
     console.log(req.body);
     req.getConnection((err,conn)=>{
         if(err) throw err;
-        let q = `CALL SP_ModAutoriza(${id},'${N}','${OBS}',${IDUB})`
+        let q = `CALL SP_ModAutoriza(${id},'${N}','${OBS}')`
         const query = conn.query(q,(err,results)=>{
             if(err) throw err;
             console.log(results);

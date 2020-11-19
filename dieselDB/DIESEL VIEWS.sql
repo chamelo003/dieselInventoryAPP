@@ -26,10 +26,3 @@ CREATE VIEW V_Ordenes AS
 	INNER JOIN Bombas B ON O.IdBomba = O.IdBomba
 	INNER JOIN TiposSalidas TS ON O.IdTipoSalida = TS.IdTipoSalida
 	INNER JOIN Bomberos BOM ON O.IdBombero = BOM.IdBombero;
-
--- VISTA DE AUTORIZADORES
-CREATE VIEW V_Autorizan AS 
-	SELECT A.IdAutoriza, A.Nombre, U.LugarUbicacion AS 'Ubicacion' , A.Observacion
-    FROM Autorizan A
-    INNER JOIN Ubicaciones U
-    ON U.IdUbicacion = A.IdUbicacion

@@ -35,8 +35,8 @@
                                             <td><%= data[i].Apellido %></td>
                                             <td><%= data[i].Observacion %></td>
                                             <td>
-                                              <a href="/catalogos/trans/edit/<%= data[i].RTN %>" class="btn btn-warning btn-sm">Editar</a>
-                                              <a href="/catalogos/trans/delete/<%= data[i].RTN %>" class="btn btn-danger btn-sm">Eliminar</a>
+                                              <a href="/catalogos/trans/<%= data[i].RTN %>" class="btn btn-warning btn-sm">Editar</a>
+                                              <a href="/catalogos/trans/del/<%= data[i].RTN %>" class="btn btn-danger btn-sm">Eliminar</a>
                                             </td>
                                           </tr>
                                         <% } %>
