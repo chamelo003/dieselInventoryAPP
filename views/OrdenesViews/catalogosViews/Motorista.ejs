@@ -24,10 +24,25 @@
                                         <th>Apellido</th>
                                         <th>Observacion</th>
                                         <th>Transportista</th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-        
+                                <tbody class="table-hover">
+                                    <% if (motoristas) { %>
+                                        <% for(var i = 0; i < motoristas.length; i++) { %>
+                                          <tr>
+                                            <td><%= motoristas[i].Identidad %></td>
+                                            <td><%= motoristas[i].Nombre %></td>
+                                            <td><%= motoristas[i].Apellido %></td>
+                                            <td><%= motoristas[i].Observacion %></td>
+                                            <td><%= motoristas[i].Transportista %></td>
+                                            <td>
+                                              <a href="/catalogos/mot/<%= motoristas[i].Identidad %>" class="btn btn-warning btn-sm">Editar</button>
+                                              <a href="/catalogos/mot/delete/<%= motoristas[i].Identidad %>" class="btn btn-danger btn-sm">Eliminar</a>
+                                            </td>
+                                          </tr>
+                                        <% } %>
+                                    <% } %>
                                 </tbody>
                             </table>  
                         </div>
@@ -42,14 +57,14 @@
                 >
                     <!--ZAMPAR AQUI EL FORM DE REGISTRO-->
                     <div class="row d-flex justify-content-center">
-                        <form class="text-center border border-light p-5 col-md-4" action="#" >
+                        <form class="text-center border border-light p-5 col-md-4" action="/catalogos/mot/new" method="POST" >
                             <!-- Grid row -->
                             <div class="form-row">
                             <!-- Grid column -->
                             <div class="col-lg-12">
                                 <!-- Material input -->
                                 <div class="md-form mt-0">
-                                    <input id="Identidad" type="text" class="form-control" maxlength="13" autocomplete="off" required>
+                                    <input id="Identidad" name="id" type="text" class="form-control" maxlength="13" autocomplete="off" required>
                                     <label for="Identidad">Identidad</label>                                    
                                 </div>
                             </div>
@@ -57,7 +72,7 @@
                             <div class="md-form col-lg-12">
                                 <!-- Material input -->
                                 <div class="md-form mt-0">
-                                    <input id="nom" type="text" class="form-control" autocomplete="off" required>                                    
+                                    <input id="nom" name="nombre" type="text" class="form-control" autocomplete="off" required>                                    
                                     <label for="nom">Nombre</label>
                                 </div>
                             </div>
@@ -65,20 +80,20 @@
                             <div class="md-form col-lg-12">
                                 <!-- Material input -->
                                 <div class="md-form mt-0">
-                                    <input id="apellido" type="text" class="form-control" autocomplete="off" required>   
+                                    <input id="apellido" name="apellido" type="text" class="form-control" autocomplete="off" required>   
                                     <label for="apellido">Apellido</label>                                 
                                 </div>
                             </div>                          
                             <!-- Grid column -->
                             <div class="md-form col-lg-12">
-                                <textarea id="form7" class="md-textarea form-control" rows="3" autocomplete="off"></textarea>
+                                <textarea id="form7" name="obs" class="md-textarea form-control" rows="3" autocomplete="off"></textarea>
                                 <label for="form7">Observacion</label>
                             </div>
                             <!-- Grid column -->
                             <div class="md-form col-lg-12">
                                 <div class="md-form mt-0">
                                     <!--el data-toggle="modal" es el que activa la modal. el data-target es el nombre de la modal que debe activar-->
-                                    <input required="required" class="form-control openModal4Id" placeholder="RTN Transporista" type="text" name="Transportistas" 
+                                    <input name="rtnTrans" required="required" class="form-control openModal4Id" placeholder="RTN Transporista" type="text" name="Transportistas" 
                                      id="rtnTrans" data-toggle="modal" data-target="#modalExtData" autocomplete="off"
                                     >
                                 </div>                                

@@ -41,30 +41,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class='RTN'>
-                          06071996010488
-                        </td>
-                        <td>
-                          samuel vasquez
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="RTN">
-                          08161956000744
-                        </td>
-                        <td>
-                          Victor avila
-                        </td>
-                    </tr>
-                    <tr>
-                      <td class="RTN">
-                        0601197023658
-                      </td>
-                      <td>
-                        Aniceto Monlina
-                      </td>
-                    </tr>
+                  <tbody class="table-hover">
+                    <% if (transportistas) { %>
+                        <% for(var i = 0; i < transportistas.length; i++) { %>
+                          <tr>
+                            <td class="RTN"><%= transportistas[i].RTN %></td>
+                            <td><%= transportistas[i].Transportista %></td>
+                          </tr>
+                        <% } %>
+                    <% } %>
                 </tbody>
             </table>
             </div>

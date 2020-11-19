@@ -39,8 +39,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_AgBomba` (IN `B` VARCHAR(25))  B
 END$$
 
 DROP PROCEDURE IF EXISTS `SP_AgBombero`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_AgBombero` (IN `N` VARCHAR(25), IN `A` VARCHAR(25), IN `O` TEXT, IN `IDB` INT)  BEGIN
-	INSERT INTO Bomberos (Nombre, Apellido, Observacion, IdBomba) VALUES (N,A,O,IDB);
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_AgBombero` (IN `N` VARCHAR(25), IN `A` VARCHAR(25), IN `O` TEXT)  BEGIN
+	INSERT INTO Bomberos (Nombre, Apellido, Observacion) VALUES (N,A,O);
 END$$
 
 DROP PROCEDURE IF EXISTS `SP_AgCierre`$$
@@ -65,9 +65,9 @@ END$$
 
 DROP PROCEDURE IF EXISTS `SP_AgOrden`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_AgOrden` (IN `F` DATE, IN `IDA` INT, IN `IDB` INT, IN `P` CHAR(7), IN `B` VARCHAR(12), IN `C` CHAR(11), IN `CH` VARCHAR(10), IN `PL` VARCHAR(15), IN `IDTS` INT, IN `IDBO` INT, IN `G` FLOAT, IN `DES` TEXT, IN `KMT` INT, IN `IMP` INT, IN `ANUL` INT, IN `CXC` INT, IN `EX` FLOAT, IN `R` INT)  BEGIN
-	INSERT INTO Ordenes (Fecha,IdAutoriza,IdBomba,Placa,IdTemporada,Boleta,Contenedor,Chasis,Planta,IdTipoSalida,
+	INSERT INTO Ordenes (Fecha,IdAutoriza,Placa,Boleta,Contenedor,Chasis,Planta,IdTipoSalida,
 	IdBombero,Galones,Descripcion,Kilometraje,Impresa,Anulada,CxC,Existencia,Reimpresion)
-    VALUES (F,IDA,IDB,P,B,C,CH,PL,IDTS,IDBO,G,DES,KMT,IMP,ANUL,CXC,EX,R);
+    VALUES (F,IDA,P,B,C,CH,PL,IDTS,IDBO,G,DES,KMT,IMP,ANUL,CXC,EX,R);
 END$$
 
 DROP PROCEDURE IF EXISTS `SP_AgTipoSalida`$$
@@ -221,16 +221,6 @@ INSERT INTO `Autorizan` (`IdAutoriza`, `Nombre`, `Observacion`) VALUES
 -- Creación: 18-11-2020 a las 18:39:43
 --
 
-DROP TABLE IF EXISTS `Bombas`;
-CREATE TABLE `Bombas` (
-  `IdBomba` int NOT NULL,
-  `Bomba` varchar(25) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- RELACIONES PARA LA TABLA `Bombas`:
---
-
 -- --------------------------------------------------------
 
 --
@@ -244,15 +234,10 @@ CREATE TABLE `Bomberos` (
   `IdBombero` int NOT NULL,
   `Nombre` varchar(25) DEFAULT NULL,
   `Apellido` varchar(25) NOT NULL,
-  `Observacion` text,
-  `IdBomba` int DEFAULT NULL
+  `Observacion` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
---
--- RELACIONES PARA LA TABLA `Bomberos`:
---   `IdBomba`
---       `Bombas` -> `IdBomba`
---
+
 
 -- --------------------------------------------------------
 
@@ -353,7 +338,6 @@ CREATE TABLE `Ordenes` (
   `IdOrden` int NOT NULL,
   `Fecha` date NOT NULL,
   `IdAutoriza` int NOT NULL,
-  `IdBomba` int NOT NULL,
   `Placa` char(7) NOT NULL,
   `Boleta` varchar(12) NOT NULL,
   `Contenedor` char(11) DEFAULT '---',
@@ -384,8 +368,6 @@ CREATE TABLE `Ordenes` (
 --       `TiposSalidas` -> `IdTipoSalida`
 --   `Placa`
 --       `Vehiculos` -> `Placa`
---   `IdBomba`
---       `Bombas` -> `IdBomba`
 --
 
 -- --------------------------------------------------------
@@ -616,17 +598,10 @@ ALTER TABLE `Autorizan`
   ADD PRIMARY KEY (`IdAutoriza`);
 
 --
--- Indices de la tabla `Bombas`
---
-ALTER TABLE `Bombas`
-  ADD PRIMARY KEY (`IdBomba`);
-
---
 -- Indices de la tabla `Bomberos`
 --
 ALTER TABLE `Bomberos`
-  ADD PRIMARY KEY (`IdBombero`),
-  ADD KEY `IdBomba` (`IdBomba`);
+  ADD PRIMARY KEY (`IdBombero`);
 
 --
 -- Indices de la tabla `Cierres`
@@ -664,7 +639,6 @@ ALTER TABLE `Ordenes`
   ADD PRIMARY KEY (`IdOrden`,`Fecha`),
   ADD KEY `IdTipoSalida` (`IdTipoSalida`),
   ADD KEY `Fecha` (`Fecha`),
-  ADD KEY `IdBomba` (`IdBomba`),
   ADD KEY `Placa` (`Placa`),
   ADD KEY `IdAutoriza` (`IdAutoriza`),
   ADD KEY `FK_Ordenes_Bomberos_idx` (`IdBombero`);
@@ -730,12 +704,6 @@ ALTER TABLE `Autorizan`
   MODIFY `IdAutoriza` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT de la tabla `Bombas`
---
-ALTER TABLE `Bombas`
-  MODIFY `IdBomba` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT de la tabla `Bomberos`
 --
 ALTER TABLE `Bomberos`
@@ -784,8 +752,6 @@ ALTER TABLE `AuditLogs`
 --
 -- Filtros para la tabla `Bomberos`
 --
-ALTER TABLE `Bomberos`
-  ADD CONSTRAINT `Bomberos_ibfk_1` FOREIGN KEY (`IdBomba`) REFERENCES `Bombas` (`IdBomba`);
 
 --
 -- Filtros para la tabla `Entradas`
@@ -807,8 +773,7 @@ ALTER TABLE `Ordenes`
   ADD CONSTRAINT `FK_Ordenes_Bomberos` FOREIGN KEY (`IdBombero`) REFERENCES `Bomberos` (`IdBombero`),
   ADD CONSTRAINT `FK_Ordenes_Cierres` FOREIGN KEY (`Fecha`) REFERENCES `Cierres` (`Fecha`),
   ADD CONSTRAINT `FK_Ordenes_TiposSalidas` FOREIGN KEY (`IdTipoSalida`) REFERENCES `TiposSalidas` (`IdTipoSalida`),
-  ADD CONSTRAINT `FK_Ordenes_Vehiculos` FOREIGN KEY (`Placa`) REFERENCES `Vehiculos` (`Placa`),
-  ADD CONSTRAINT `FK_OrdenesBombas` FOREIGN KEY (`IdBomba`) REFERENCES `Bombas` (`IdBomba`);
+  ADD CONSTRAINT `FK_Ordenes_Vehiculos` FOREIGN KEY (`Placa`) REFERENCES `Vehiculos` (`Placa`);
 
 --
 -- Filtros para la tabla `Vehiculos`

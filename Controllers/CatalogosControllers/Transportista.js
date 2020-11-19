@@ -17,7 +17,7 @@ controller.Agrega = (req,res)=>{
     rtn = req.body.rtn;
     nombre = req.body.nom;
     apellido = req.body.ape;
-    Obs = req.body.obs
+    Obs = req.body.obs;
     console.log(req.body);
     req.getConnection((err,conn)=>{
         if(err) throw err;
@@ -85,17 +85,4 @@ controller.Elimina = (req,res)=>{
     });
 };
 
-// Llenar la tabla de la ventana modal de transportistas. 
-// Esta se va a usar para seleccionar el transportista al momento de registrar un motorista
-controller.ModalTransportista = (req,res)=>{
-    req.getConnection((err,conn) => {
-        const q = `SELECT RTN, CONCAT(Nombre,' ',Apellido) AS Transportista FROM Transportistas;`
-        conn.query(q,(err,results)=>{
-            if(err){
-                res.json(err);
-            }
-            res.send({data:results});
-        });
-    });
-}
 module.exports = controller;

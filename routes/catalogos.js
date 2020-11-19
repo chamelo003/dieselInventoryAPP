@@ -13,6 +13,7 @@ const { isLoggedIn } = require('../lib/auth');
 // Jalo mis controladores
 const AutorizaCont = require('../Controllers/CatalogosControllers/Autoriza');
 const TransportistaCont = require('../Controllers/CatalogosControllers/Transportista');
+const MotoristaCont = require('../Controllers/CatalogosControllers/Motorista');
 //#region AUTORIZADORES
 // Acciones para los que autorizan
 // Ruta para ver listado de personas que autorizan
@@ -49,10 +50,10 @@ router.get('/trans/del/:id',TransportistaCont.Elimina);
 // Acciones para morotistas
 // Ruta para ver el listado de los motoristas
 // Link en la vista: ('/catalogos/mot')
-router.get('/mot',(req,res,next)=>{
-    //res.send('lista de los motoristas');
-    res.render('./OrdenesViews/catalogosViews/Motorista',{title:'Motoristas',data:'data de ejemplo motorista :v'});
-});
+// Mostrar la data de la db
+router.get('/mot',MotoristaCont.Lista);
+// Agregar un motorista
+router.post('/mot/new',MotoristaCont.Agrega);
 //#endregion
 
 //#region TIPOS DE VEHICULOS
