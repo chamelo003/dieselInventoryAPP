@@ -17,6 +17,7 @@ const MotoristaCont = require('../Controllers/CatalogosControllers/Motorista');
 const TipoVehiculoCont = require('../Controllers/CatalogosControllers/TiposVehiculos');
 const VehiculosCont = require('../Controllers/CatalogosControllers/Vehiculos');
 const MarcasCont = require('../Controllers/CatalogosControllers/Marca');
+const BombertosCont = require('../Controllers/CatalogosControllers/Bomberos');
 
 //#region AUTORIZADORES
 // Acciones para los que autorizan
@@ -102,10 +103,9 @@ router.get('/veh/del/:id',VehiculosCont.Elimina);
 // Acciones para los BOMBEROS
 // Ruta para ver lsitado de bomberos
 // Link en la vista: ('/catalogos/bombs')
-router.get('/bombs',(req,res,next)=>{
-    //res.send('lista de bomberos');
-    res.render('./OrdenesViews/catalogosViews/Bomberos',{title:'Bomberos'});
-});
+router.get('/bombs',BombertosCont.Lista);
+// Registrar
+router.post('/bombs/new',BombertosCont.Agrega);
 //#endregion
 
 //#region TIPOS DE SALIDAS
@@ -127,7 +127,11 @@ router.get('/marcas',MarcasCont.Lista);
 // agregar
 router.post('/marcas/new',MarcasCont.Agrega);
 // seleccionar para editar
-router.post('/marcas/:id',MarcasCont.selectEdit);
+router.get('/marcas/:id',MarcasCont.selectEdit);
+// editar
+router.post('/marcas/edit/:id',MarcasCont.Edita);
+// eliminar
+router.get('/marcas/del/:id',MarcasCont.Elimina);
 //#endregion
 
 module.exports = router;

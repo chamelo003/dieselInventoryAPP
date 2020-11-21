@@ -23,11 +23,24 @@
                                         <th>Nombre</th>
                                         <th>Apellido</th>
                                         <th>Observacion</th>
-                                        <th>Bomba asignada</th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-        
+                                <tbody class="table-hover">
+                                    <% if (data) { %>
+                                        <% for(var i = 0; i < data.length; i++) { %>
+                                          <tr>
+                                            <td><%= data[i].IdBombero %></td>
+                                            <td><%= data[i].Nombre %></td>
+                                            <td><%= data[i].Apellido %></td>
+                                            <td><%= data[i].Observacion %></td>
+                                            <td>
+                                              <a href="/catalogos/bombs/<%= data[i].IdBombero %>" class="btn btn-warning btn-sm">Editar</button>
+                                              <a href="/catalogos/bombs/del/<%= data[i].IdBombero %>" class="btn btn-danger btn-sm">Eliminar</a>
+                                            </td>
+                                          </tr>
+                                        <% } %>
+                                    <% } %>
                                 </tbody>
                             </table>  
                         </div>
@@ -42,14 +55,14 @@
                 >
                     <!--ZAMPAR AQUI EL FORM DE REGISTRO-->
                     <div class="row d-flex justify-content-center">
-                        <form class="text-center border border-light p-5 col-md-4" action="#" >
+                        <form class="text-center border border-light p-5 col-md-4" action="/catalogos/bombs/new" method="POST">
                             <!-- Grid row -->
                             <div class="form-row">
                             <!-- Grid column -->
                             <div class="md-form col-lg-12">
                                 <!-- Material input -->
                                 <div class="md-form mt-0">
-                                    <input id="nombre" type="text" class="form-control" autocomplete="off" required>    
+                                    <input id="nombre" name="nombre" type="text" class="form-control" autocomplete="off" required>    
                                     <label for="nombre">Nombres</label>                                
                                 </div>
                             </div>
@@ -57,29 +70,14 @@
                             <div class="md-form col-lg-12">
                                 <!-- Material input -->
                                 <div class="md-form mt-0">
-                                    <input id="apellido" type="text" class="form-control" autocomplete="off" required>       
+                                    <input id="apellido" name="apellido" type="text" class="form-control" autocomplete="off" required>       
                                     <label for="apellido">Apellidos</label>                             
                                 </div>
                             </div>                          
                             <!-- Grid column -->
                             <div class="md-form col-lg-12">
-                                <textarea id="form7" class="md-textarea form-control" rows="3" autocomplete="off"></textarea>
+                                <textarea id="form7" name="obs" class="md-textarea form-control" rows="3" autocomplete="off"></textarea>
                                 <label for="form7">Observacion</label>
-                            </div>
-                            <!-- Grid column -->
-                            <div class="md-form col-lg-12">
-                                <div class="md-form mt-0">
-                                    <!--el data-toggle="modal" es el que activa la modal. el data-target es el nombre de la modal que debe activar-->
-                                    <!--input required="required" class="form-control" placeholder="RTN Transporista" type="text" name="Transportistas" id="rtnTrans" data-toggle="modal" data-target="#modalExtData"-->
-                                    <select required="required" class="browser-default custom-select">
-                                        <option disabled selected value="">Elija la bomba asignada</option>
-                                        <option value="1">Cuarto Frio</option>
-                                        <option value="2">Suragroh</option>
-                                        <option value="3">Santa Rosa</option>
-                                        <option value="4">Ojo de Agua</option>
-                                    </select>
-                                </div>                                
-                            </div>
                             </div>
                             <div class="col-md-12">
                                 <button id="regMot" class="btn btn-primary" type="submit">Registrar</button>

@@ -38,14 +38,47 @@ controller.Agrega = (req,res)=>{
 // seleccionar para editar registro
 controller.selectEdit = (req,res)=>{
     const {id} = req.params;
+    console.log(id);
     req.getConnection((err,conn)=>{
         if(err) throw err;
-        q = `Select * From Marcas Where IdMarca = ${id};`;
+        q = `SELECT * FROM Marcas WHERE IdMarca = ${id};`;
         conn.query(q,(err,results)=>{
             if(err) throw err;
             console.log(results);
+            res.render('./OrdenesViews/catalogosViews/EditForms/MarcaEdit',{results,title:'Editar Marca'});
         });
     });
-    res.render('./OrdenesViews/catalogosViews/MarcaEdit',{results,title:'Editar Marca'});
 };
+
+// editar el registro
+controller.Edita = (req,res)=>{
+    const {id} = req.params;
+    m = req.body.marca;
+    req.getConnection((err,conn)=>{
+        if(err) throw err;
+        q = `UPDATE Marcas SET Marca = '${m}' WHERE IdMarca = ${id};`;
+        conn.query(q,(err,results)=>{
+            if(err) throw err;
+            console.log(results);
+            req.flash('success','Datos actualizados satisfactoriamente');
+            res.redirect('/catalogos/marcas');
+        })
+    });
+};
+
+// Eliminar
+controller.Elimina = (req,res)=>{
+    const {id} = req.params;
+    req.getConnection((err,conn)=>{
+        if(err) throw err;
+        q = `DELETE FROM Marcas WHERE IdMarca = ${id};`;
+        conn.query(q,(err,results)=>{
+            if(err) throw err;
+            console.log(results);
+            req.flash('Datos eliminados satisfactoriamente');
+            res.redirect('/catalogos/marcas');
+        });
+    });
+};
+
 module.exports = controller;
