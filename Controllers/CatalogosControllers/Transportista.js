@@ -35,6 +35,7 @@ controller.Agrega = (req,res)=>{
                 }
             }
             console.log(results);
+            req.flash('success','Datos almacenados satisfactoriamente!');
             res.redirect('/catalogos/trans')
         });
     });
@@ -47,7 +48,7 @@ controller.selectEdit =  (req,res)=>{
         q = `SELECT * FROM Transportistas WHERE RTN =${id}`;
         conn.query(q, (err, results) => {
             if(err) throw err;
-        res.render('./OrdenesViews/catalogosViews/EditForms/TransportistaEdit', {results,title:"Editar Transportista"});
+        res.render('./OrdenesViews/catalogosViews/EditForms/TransportistaEdit', {results,title:"Motoristas"});
         });
     });
 }
@@ -65,6 +66,7 @@ controller.Edit = (req,res)=>{
         const query = conn.query(q,(err,results)=>{
             if(err) throw err;
         console.log(results);
+        req.flash('success','Datos actualizados satisfactoriamente!');
             res.redirect('/catalogos/trans');
         });
     });
@@ -80,6 +82,7 @@ controller.Elimina = (req,res)=>{
         const query = conn.query(q,(err,results)=>{
             if(err) throw err;
             console.log(results);
+            req.flash('success','Datos eliminados satisfactoriamente!');
             res.redirect('/catalogos/trans');
         });
     });

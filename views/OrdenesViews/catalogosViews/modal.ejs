@@ -29,7 +29,7 @@
           <% if (title == "Motoristas"){ %>
             <div class="modalListMotoristas">
               <H4>Listado de Transportistas</H4>
-            <table class="hover listado">
+            <table class="hover scrollable">
                 <thead>
                     <tr>
                         <th>
@@ -40,8 +40,7 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody>
-                  <tbody class="table-hover">
+                <tbody class="table-hover">
                     <% if (transportistas) { %>
                         <% for(var i = 0; i < transportistas.length; i++) { %>
                           <tr>
@@ -60,73 +59,65 @@
             <!--Listado de motoristas. Se va a mostrar cuando la clase .mot sea marcado como visible-->
             <div class="mot">
               <h4>Listado de Motoristas</h4>
-              <table class="hover listado">
+              <table class="hover scrollable">
                 <thead>
                   <tr>
                     <th>Identidad</th>
                     <th>Motorista</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>0601195812345</td>
-                    <td class="mottdselector">Juan Pirulo</td>
-                  </tr>
-                  <tr>
-                    <td>0602196612345</td>
-                    <td class="mottdselector">Elver Galarga</td>
-                  </tr>
-                </tbody>
+                <tbody class="table-hover">
+                  <% if (Motoristas) { %>
+                      <% for(var i = 0; i < Motoristas.length; i++) { %>
+                        <tr>
+                          <td><%= Motoristas[i].Identidad %></td>
+                          <td class="mottdselector"><%= Motoristas[i].Motorista %></td>
+                        </tr>
+                      <% } %>
+                  <% } %>
+              </tbody>
               </table>
             </div>
             <div class="marca">
               <h4>Listado de Marcas</h4>
-              <table class="hover listado">
+              <table class="hover scrollable">
                 <thead>
                   <tr>
                     <th>IdMarca</th>
                     <th>Marca</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td class="mtdselector">Toyota</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td class="mtdselector">Nissan</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td class="mtdselector">John Deere</td>
-                  </tr>
-                </tbody>
+                <tbody class="table-hover">
+                  <% if (Marcas) { %>
+                      <% for(var i = 0; i < Marcas.length; i++) { %>
+                        <tr>
+                          <td><%= Marcas[i].IdMarca %></td>
+                          <td class="mtdselector"><%= Marcas[i].Marca %></td>
+                        </tr>
+                      <% } %>
+                  <% } %>
+              </tbody>
               </table>
             </div>
             <div class="tv">
               <h4>Listado de Tipos de Vehiculos</h4>
-              <table class="hover listado">
+              <table class="hover scrollable">
                 <thead>
                   <tr>
                     <th>IdTipo</th>
                     <th>Tipo de Vehiculo</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td class="tvtdselector">PickUp</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td class="tvtdselector">Ambulancia</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td class="tvtdselector">Cabezal Alquilado</td>
-                  </tr>
-                </tbody>
+                <tbody class="table-hover">
+                  <% if (TV) { %>
+                      <% for(var i = 0; i < TV.length; i++) { %>
+                        <tr>
+                          <td><%= TV[i].IdTipo %></td>
+                          <td class="tvtdselector"><%= TV[i].Tipo %></td>
+                        </tr>
+                      <% } %>
+                  <% } %>
+              </tbody>
               </table>
             </div>
           <% } %>          

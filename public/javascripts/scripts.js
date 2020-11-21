@@ -70,7 +70,7 @@ $(document).ready( function (){
         });
     });
 
-
+ 
 //#endregion
 $('#fecha').change(function(){
     alert($(this).val());
@@ -84,7 +84,14 @@ $('#fecha').change(function(){
     $('.listado').DataTable({
         "language":{
             "url":"/javascripts/Spanish.json"
-        }
+        },
+        
+    });
+
+    $('.scrollable').DataTable({
+        "scrollY":        "200px",
+        "scrollCollapse": true,
+        "paging":         false
     });
 //#endregion
 });

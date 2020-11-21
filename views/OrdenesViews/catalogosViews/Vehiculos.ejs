@@ -22,12 +22,29 @@
                                         <th>Placa </th>
                                         <th>Marca</th>
                                         <th>Tipo de vehiculo</th>
-                                        <th>Observacion</th>
                                         <th>Motorista</th>
+                                        <th>Transportista</th>
+                                        <th>Observacion</th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-        
+                                <tbody class="table-hover">
+                                    <% if (Vehiculos) { %>
+                                        <% for(var i = 0; i < Vehiculos.length; i++) { %>
+                                          <tr>
+                                            <td><%= Vehiculos[i].Placa %></td>
+                                            <td><%= Vehiculos[i].Marca %></td>
+                                            <td><%= Vehiculos[i].Tipo %></td>
+                                            <td><%= Vehiculos[i].MOTORISTA %></td>
+                                            <td><%= Vehiculos[i].TRANSPORTISTA %></td>
+                                            <td><%= Vehiculos[i].Observacion %></td>
+                                            <td>
+                                                <a href="/catalogos/veh/<%= Vehiculos[i].Placa %>" class="btn btn-warning btn-sm">Editar</button>
+                                                <a href="/catalogos/veh/del/<%= Vehiculos[i].Placa %>" class="btn btn-danger btn-sm">Eliminar</a>
+                                              </td>
+                                          </tr>
+                                        <% } %>
+                                    <% } %>
                                 </tbody>
                             </table>  
                         </div>
@@ -42,14 +59,14 @@
                 >
                     <!--ZAMPAR AQUI EL FORM DE REGISTRO-->
                     <div class="row d-flex justify-content-center">
-                        <form class="text-center border border-light p-5 col-md-4" action="/catalogos/veh" method="POST" >
+                        <form class="text-center border border-light p-5 col-md-4" action="/catalogos/veh/new" method="POST" >
                             <!-- Grid row -->
                             <div class="form-row">
                             <!-- Grid column -->
                             <div class="col-lg-12">
                                 <!-- Material input -->
                                 <div class="md-form mt-0">
-                                    <input id="placa" type="text" name="placa" class="form-control" required pattern="[A-Z]{3}[0-9]{4}" autocomplete="off">  
+                                    <input id="placa" type="text" name="placa" class="form-control" required maxlength="7" autocomplete="off">  
                                     <label for="placa">Placa</label>                                  
                                 </div>
                             </div>

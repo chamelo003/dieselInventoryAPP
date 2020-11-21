@@ -14,6 +14,10 @@ const { isLoggedIn } = require('../lib/auth');
 const AutorizaCont = require('../Controllers/CatalogosControllers/Autoriza');
 const TransportistaCont = require('../Controllers/CatalogosControllers/Transportista');
 const MotoristaCont = require('../Controllers/CatalogosControllers/Motorista');
+const TipoVehiculoCont = require('../Controllers/CatalogosControllers/TiposVehiculos');
+const VehiculosCont = require('../Controllers/CatalogosControllers/Vehiculos');
+const MarcasCont = require('../Controllers/CatalogosControllers/Marca');
+
 //#region AUTORIZADORES
 // Acciones para los que autorizan
 // Ruta para ver listado de personas que autorizan
@@ -54,41 +58,44 @@ router.get('/trans/del/:id',TransportistaCont.Elimina);
 router.get('/mot',MotoristaCont.Lista);
 // Agregar un motorista
 router.post('/mot/new',MotoristaCont.Agrega);
+// Seleccionar un motorista para editar
+router.get('/mot/:id',MotoristaCont.selectEdit);
+// Editar los datos de un motorista
+router.post('/mot/edit/:id',MotoristaCont.Edit);
+// Eliminar un motorista
+router.get('/mot/del/:id',MotoristaCont.Elimina);
 //#endregion
 
 //#region TIPOS DE VEHICULOS
 // Acciones para los tipos de vehiculos
 // Ruta para ver los tipos de vehiculos
 // Link en la vista: ('/catalogos/tv')
-router.get('/tv',(req,res,next)=>{
-    //res.send('lista de tipos de vehiculos');
-    res.render('./OrdenesViews/catalogosViews/TiposVehiculos',{title:'Tipos de vehiculos'});
-});
+// Ver listado
+router.get('/tv',TipoVehiculoCont.Lista);
+// Agregar registro
+router.post('/tv/new',TipoVehiculoCont.Agrega);
+// seleccionar para editar
+router.get('/tv/:id',TipoVehiculoCont.selectEdit);
+// editar los datos
+router.post('/tv/edit/:id',TipoVehiculoCont.Edit);
+// Eliminar los datos
+router.get('/tv/del/:id',TipoVehiculoCont.Elimina);
 //#endregion
 
 //#region RUTAS VEHICULOS
 // Acciones para vehiculos
 // Ruta para ver los vehiculos
 // Link en la vista: ('/catalogos/veh')
-router.get('/veh',(req,res,next)=>{
-    //res.send('lista de vehiculos');
-    res.render('./OrdenesViews/catalogosViews/Vehiculos',{title:'Vehiculos'});
-});
-// Al registrar un vehiculo (link en form /catalogos/veh mehtod post)
-router.post('/veh',(req,res,next)=>{
-    vehiculoData = req.body;
-    res.send(req.body);
-})
-//#endregion
-
-//#region BOMBAS
-// Acciones para las bombas de combustible
-// Ruta para ver listado de bombas
-// Link en la vista: ('/catalogos/bomb')
-router.get('/bomb',(req,res,next)=>{
-    //res.send('lista de bombas');
-    res.render('./OrdenesViews/catalogosViews/Bombas',{title:'Bombas'});
-});
+// Listado de motoristas
+router.get('/veh',VehiculosCont.Lista);
+// Registrar en la BD
+router.post('/veh/new',VehiculosCont.Agrega);
+// Seleccionar para editar
+router.get('/veh/:id',VehiculosCont.selectEdit);
+// Editar datos
+router.post('/veh/edit/:id',VehiculosCont.Edit);
+// Eliminar
+router.get('/veh/del/:id',VehiculosCont.Elimina);
 //#endregion
 
 //#region BOMBEROS
@@ -109,6 +116,18 @@ router.get('/tps',(req,res,next)=>{
     //res.send('lista de tipos de salida');
     res.render('./OrdenesViews/catalogosViews/TiposSalidas',{title:'Tipos de salidas'});
 });
+//#endregion
+
+//#region Marcas
+// Acciones para los Marcas
+// Ruta para ver lista de Marcas
+// Link en la vista: ('/catalogos/marcas')
+// listado
+router.get('/marcas',MarcasCont.Lista);
+// agregar
+router.post('/marcas/new',MarcasCont.Agrega);
+// seleccionar para editar
+router.post('/marcas/:id',MarcasCont.selectEdit);
 //#endregion
 
 module.exports = router;
